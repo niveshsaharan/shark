@@ -3,10 +3,14 @@
 $finder = Symfony\Component\Finder\Finder::create()
     ->notPath('bootstrap/*')
     ->notPath('storage/*')
-    ->notPath('resources/view/mail/*')
+    ->notPath('resources/*')
+    ->notPath('public/*')
+    ->notPath('vendor/*')
     ->in([
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
+        __DIR__ . '/app',
+        __DIR__ . '/config',
+        __DIR__ . '/database',
+        __DIR__ . '/routes',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
@@ -32,6 +36,6 @@ return PhpCsFixer\Config::create()
         'method_argument_space' => [
             'on_multiline' => 'ensure_fully_multiline',
             'keep_multiple_spaces_after_comma' => true,
-        ]
+        ],
     ])
     ->setFinder($finder);
