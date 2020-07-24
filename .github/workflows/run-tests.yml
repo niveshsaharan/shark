@@ -17,6 +17,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Copy ENV Laravel Configuration for CI
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
@@ -33,6 +36,16 @@ jobs:
       - name: Install dependencies
         run: |
           composer install
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Create DB and schemas
+          run: |
+            mkdir -p database
+            touch database/database.sqlite
+            php artisan migrate
+            php artisan db:seed
 
       - name: Execute tests
         run: vendor/bin/phpunit
