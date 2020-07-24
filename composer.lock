@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "406d2b401f5a350d2e4d40a1046a4071",
+    "content-hash": "f3b024c16cad8d08f78b5dc1c4d48471",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -233,11 +233,17 @@
         },
         {
             "name": "centire/laravel-shopify",
-            "version": "dev-master",
+            "version": "12.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/niveshsaharan/laravel-shopify.git",
+                "reference": "14c8e8a86be822a310f7be19e2d25108b16d5b0b"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-packages/laravel-shopify",
-                "reference": "de5ce838d359ca95c388b1f7392261e1249b08c9"
+                "type": "zip",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/14c8e8a86be822a310f7be19e2d25108b16d5b0b",
+                "reference": "14c8e8a86be822a310f7be19e2d25108b16d5b0b",
+                "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "~2.5",
@@ -273,16 +279,7 @@
                     "src/ShopifyApp/helpers.php"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Osiset\\ShopifyApp\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -303,9 +300,7 @@
                 "shopify",
                 "shopify-api"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2020-07-23T11:00:18+00:00"
         },
         {
             "name": "chrisharrison/php-array-of",
@@ -7345,9 +7340,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "centire/laravel-shopify": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
