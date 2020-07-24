@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Osiset\ShopifyApp\Exceptions\MissingShopDomainException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -13,7 +14,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        MissingShopDomainException::class
     ];
 
     /**
@@ -50,6 +51,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof MissingShopDomainException) {
+            throw new \App\Exceptions\MissingShopDomainException();
+        }
+
         return parent::render($request, $exception);
     }
 }
