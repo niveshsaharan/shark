@@ -41,11 +41,11 @@ jobs:
         run: php artisan key:generate
 
       - name: Create DB and schemas
-          run: |
-            mkdir -p database
-            touch database/database.sqlite
-            php artisan migrate
-            php artisan db:seed
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+          php artisan migrate
+          php artisan db:seed
 
       - name: Execute tests
         run: vendor/bin/phpunit
