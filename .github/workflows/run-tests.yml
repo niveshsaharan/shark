@@ -10,6 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [7.3, 7.4]
+        dependency-version: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.os }}
 
@@ -27,7 +28,7 @@ jobs:
           key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
@@ -43,7 +44,7 @@ jobs:
       - name: Create database and run migrations
         run: |
           sudo /etc/init.d/mysql start
-          mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS shark;'
+          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS shark;'
           php artisan migrate:refresh --seed
 
       - name: Execute tests
