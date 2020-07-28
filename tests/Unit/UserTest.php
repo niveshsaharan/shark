@@ -138,7 +138,7 @@ class UserTest extends TestCase
 
         $shop->refresh();
 
-        $this->assertTrue($response === 1);
+        $this->assertSame($response, 1);
         $this->assertSame($email, $shop->contact_email);
     }
 }

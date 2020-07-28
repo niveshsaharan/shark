@@ -70,7 +70,7 @@ class FetchAndUpdateShopTest extends TestCase
             $shop
         );
 
-        $this->assertTrue($response == 1);
+        $this->assertSame($response, 1);
 
         // Refresh both models to see the changes
         $shop->refresh();
