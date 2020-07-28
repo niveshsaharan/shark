@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3b024c16cad8d08f78b5dc1c4d48471",
+    "content-hash": "fa7770cd145fca26e5e2546d5a28aa0b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -233,16 +233,16 @@
         },
         {
             "name": "centire/laravel-shopify",
-            "version": "12.1.0",
+            "version": "12.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/niveshsaharan/laravel-shopify.git",
-                "reference": "14c8e8a86be822a310f7be19e2d25108b16d5b0b"
+                "reference": "2107004cbe85737d3c2ee754a81cb9889c3db79c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/14c8e8a86be822a310f7be19e2d25108b16d5b0b",
-                "reference": "14c8e8a86be822a310f7be19e2d25108b16d5b0b",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/2107004cbe85737d3c2ee754a81cb9889c3db79c",
+                "reference": "2107004cbe85737d3c2ee754a81cb9889c3db79c",
                 "shasum": ""
             },
             "require": {
@@ -300,7 +300,7 @@
                 "shopify",
                 "shopify-api"
             ],
-            "time": "2020-07-23T11:00:18+00:00"
+            "time": "2020-07-25T08:20:56+00:00"
         },
         {
             "name": "chrisharrison/php-array-of",

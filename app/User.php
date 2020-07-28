@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Formatters\ShopApiResponseFormatter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Osiset\BasicShopifyAPI\ResponseAccess;
 use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
 use Osiset\ShopifyApp\Traits\ShopModel;
 
@@ -11,14 +13,7 @@ class User extends Authenticatable implements IShopModel
 {
     use Notifiable, ShopModel;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,5 +31,25 @@ class User extends Authenticatable implements IShopModel
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'presentment_currencies' => 'json',
+        'shopify_scopes' => 'json',
+        'shopify_partner' => 'boolean',
+        'shopify_plus' => 'boolean',
     ];
+
+
+    /**
+     * Update from api response
+     *
+     * @param $query
+     * @param \Osiset\BasicShopifyAPI\ResponseAccess $response
+     *
+     * @return bool
+     */
+    public function scopeUpdateFromGraphApiResponse($query, ResponseAccess $response)
+    {
+        $response = app(ShopApiResponseFormatter::class)->format($response);
+
+        return $query->update($response);
+    }
 }

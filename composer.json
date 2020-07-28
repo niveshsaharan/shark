@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
-        "centire/laravel-shopify": "^12.0",
+        "centire/laravel-shopify": "^12.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -65,6 +65,9 @@
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "repositories": [
-
+        {
+            "type" : "path",
+            "url" : "../laravel-packages/*"
+        }
     ]
 }

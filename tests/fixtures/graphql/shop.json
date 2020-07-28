@@ -1,0 +1,48 @@
+{
+    "data": {
+        "shop": {
+            "id": "gid://shopify/Shop/6587023382",
+            "name": "graphql-admin",
+            "email": "shayne@shopify.com",
+            "contactEmail": "shayne@shopify.com",
+            "currencyCode": "CAD",
+            "currencyFormats": {
+                "moneyFormat": "${{amount}}",
+                "moneyInEmailsFormat": "${{amount}}",
+                "moneyWithCurrencyFormat": "${{amount}} CAD",
+                "moneyWithCurrencyInEmailsFormat": "${{amount}} CAD"
+            },
+            "primaryDomain": {
+                "host": "graphql-admin.myshopify.com"
+            },
+            "timezoneOffset": "-0400",
+            "ianaTimezone": "America/Toronto",
+            "enabledPresentmentCurrencies": [
+                "CAD"
+            ],
+            "plan": {
+                "displayName": "staff",
+                "partnerDevelopment": false,
+                "shopifyPlus": false
+            },
+            "billingAddress": {
+                "city": "Test City",
+                "province": "Ontario",
+                "provinceCode": "ON",
+                "country": "Canada",
+                "countryCodeV2": "CA"
+            }
+        }
+    },
+    "extensions": {
+        "cost": {
+            "requestedQueryCost": 5,
+            "actualQueryCost": 5,
+            "throttleStatus": {
+                "maximumAvailable": 1000,
+                "currentlyAvailable": 995,
+                "restoreRate": 50
+            }
+        }
+    }
+}
