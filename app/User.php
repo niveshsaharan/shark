@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Formatters\ShopApiResponseFormatter;
+use App\Formatters\ShopWebhookResponseFormatter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Osiset\BasicShopifyAPI\ResponseAccess;
@@ -49,6 +50,21 @@ class User extends Authenticatable implements IShopModel
     public function scopeUpdateFromGraphApiResponse($query, ResponseAccess $response)
     {
         $response = app(ShopApiResponseFormatter::class)->format($response);
+
+        return $query->update($response);
+    }
+
+    /**
+     * Update from api response
+     *
+     * @param $query
+     * @param $data \stdClass
+     *
+     * @return bool
+     */
+    public function scopeUpdateFromWebhook($query, \stdClass $data)
+    {
+        $response = app(ShopWebhookResponseFormatter::class)->format($data);
 
         return $query->update($response);
     }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Formatters\ShopApiResponseFormatter;
+use App\Formatters\ShopWebhookResponseFormatter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public $singletons = [
         ShopApiResponseFormatter::class => ShopApiResponseFormatter::class,
+        ShopWebhookResponseFormatter::class => ShopWebhookResponseFormatter::class,
     ];
 
     /**

@@ -141,4 +141,27 @@ class UserTest extends TestCase
         $this->assertSame($response, 1);
         $this->assertSame($email, $shop->contact_email);
     }
+
+    /**
+     * @test
+     */
+    public function updateFromWebhook()
+    {
+        $shop = factory(User::class)->create([
+            'contact_email' => 'some-email@example.com',
+        ]);
+
+        $email = $this->faker->safeEmail;
+
+        $webhookResponse = (object)[
+            'customer_email' => $email,
+        ];
+
+        $response = $shop->updateFromWebhook($webhookResponse);
+
+        $shop->refresh();
+
+        $this->assertSame($response, 1);
+        $this->assertSame($email, $shop->contact_email);
+    }
 }

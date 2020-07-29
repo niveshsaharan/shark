@@ -261,17 +261,19 @@ return [
     | Key is for the Shopify webhook event
     | Value is for the endpoint to call
     |
+    | can be set from env like
+    | SHOPIFY_WEBHOOKS=shop/update,app/uninstalled
+    | SHOPIFY_WEBHOOKS_DOMAIN=https://your-domain-here
+    |
     */
+    'webhooks' => env('SHOPIFY_WEBHOOKS') ? array_map(function (string $topic) {
+        $topic = trim($topic);
 
-    'webhooks' => [
-        /*
-            [
-                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'orders/create'),
-                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
-            ],
-            ...
-        */
-    ],
+        return [
+            'topic' => $topic,
+            'address' => env('SHOPIFY_WEBHOOK_' . strtoupper(str_replace('/', '_', $topic)) . '_ADDRESS', (env('SHOPIFY_WEBHOOKS_DOMAIN') ?: env('APP_URL')) . '/webhook?topic=' . $topic),
+        ];
+    }, explode(',', env('SHOPIFY_WEBHOOKS'))) : [],
 
     /*
     |--------------------------------------------------------------------------

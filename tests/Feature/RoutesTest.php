@@ -18,4 +18,12 @@ class RoutesTest extends TestCase
     {
         $this->assertRouteUsesMiddleware('home', ['web', 'auth.shopify'], true);
     }
+
+    /**
+     * @test
+     */
+    public function webhook_route_uses_correct_middlewares()
+    {
+        $this->assertRouteUsesMiddleware('webhook', ['api', 'auth.webhook'], true);
+    }
 }

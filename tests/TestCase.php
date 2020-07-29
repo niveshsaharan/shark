@@ -11,6 +11,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, AdditionalAssertions;
 
+    protected $fixturesPath = __DIR__ . '/fixtures/';
+
     protected function setApiStub(): void
     {
         $this->app['config']->set(
