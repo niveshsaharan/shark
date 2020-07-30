@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Jobs;
+namespace Tests\Feature\Webhooks;
 
 use App\User;
 use App\Webhooks\ShopUpdateWebhook;
