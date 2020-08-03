@@ -1,0 +1,10 @@
+{
+    "shop_id": 690933842,
+    "shop_domain": "apple.myshopify.com",
+    "customer": {
+        "id": 191167,
+        "email": "john@email.com",
+        "phone": "555-625-1199"
+    },
+    "orders_to_redact": [299938, 280263, 220458]
+}
