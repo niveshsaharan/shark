@@ -31,4 +31,21 @@ abstract class TestCase extends BaseTestCase
             }
         );
     }
+
+    /**
+     * To test view composers
+     * @param $view
+     *
+     * @return \Illuminate\Testing\TestResponse
+     */
+    protected function getRoutedView($view)
+    {
+        $route = '/phpunit/' . uniqid() . '/' . $view;
+
+        resolve(\Illuminate\Routing\Router::class)->get($route, function () use ($view) {
+            return view($view);
+        });
+
+        return $this->get($route);
+    }
 }
