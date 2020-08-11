@@ -15,3 +15,7 @@ yarn-error.log
 # Dynamically generated files
 *_compiled.blade.php
 *_compiled.js
+
+# Vypress
+cypress.json
+.env.cypress
