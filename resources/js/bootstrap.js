@@ -1,28 +1,27 @@
-window._ = require('lodash');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { AppProvider } from '@shopify/polaris';
+import { Provider } from '@shopify/app-bridge-react';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import {config} from './functions';
+import {App} from './components';
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+const shopOrigin = config('shop.shopify_domain');
+const apiKey = config('shopify.api_key');
 
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo';
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+ReactDOM.render(
+    <AppProvider
+        linkComponent={ReactRouterLink}
+        i18n={enTranslations}>
+        <Provider
+            config={{
+                apiKey,
+                shopOrigin,
+                forceRedirect: config('force_redirect'),
+            }}>
+            <App />
+        </Provider>
+    </AppProvider>,
+    document.getElementById('app')
+);

@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('shopify-app.app_name') }}</title>
-
+        <script>
+            window.Env = {!! json_encode([
+                'env'                     => config('app.env'),
+                'base_url'                => config('app.url'),
+                'csrfToken'               => csrf_token(),
+                'shopify' => \Illuminate\Support\Arr::only(config('shopify-app'), [
+                    'appbridge_enabled',
+                    'appbridge_version',
+                    'app_name',
+                    'app_slug',
+                    'api_key',
+                    'api_redirect',
+                ]),
+                'shop' => [
+                    'shopify_domain' => \Illuminate\Support\Facades\Auth::user()->name
+                ]
+            ],JSON_PRETTY_PRINT) !!};
+        </script>
         @yield('styles')
     </head>
 

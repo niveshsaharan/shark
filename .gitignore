@@ -19,3 +19,4 @@ yarn-error.log
 # Vypress
 cypress.json
 .env.cypress
+cypress/videos/*
