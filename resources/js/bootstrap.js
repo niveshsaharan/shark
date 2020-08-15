@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link as ReactRouterLink } from 'react-router-dom';
 import { AppProvider } from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
 import enTranslations from '@shopify/polaris/locales/en.json';
@@ -12,7 +11,6 @@ const apiKey = config('shopify.api_key');
 
 ReactDOM.render(
     <AppProvider
-        linkComponent={ReactRouterLink}
         i18n={enTranslations}>
         <Provider
             config={{

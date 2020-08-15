@@ -16,9 +16,14 @@
                     'appbridge_enabled',
                     'appbridge_version',
                     'app_name',
-                    'app_slug',
                     'api_key',
                     'api_redirect',
+                ]),
+                 'shark' => \Illuminate\Support\Arr::only(config('shark'), [
+                    'shopify_affiliate_url',
+                    'app_slug',
+                    'app_description',
+                    'demo_url'
                 ]),
                 'shop' => [
                     'shopify_domain' => \Illuminate\Support\Facades\Auth::user()->name
