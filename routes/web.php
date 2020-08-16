@@ -18,9 +18,3 @@ Route::get('/', function () {
 })
     ->middleware(['auth.shopify'])
     ->name('home');
-
-Route::get('/{any}', function () {
-    return view('shopify-app::home.index');
-})
-    ->middleware(['auth.shopify', 'billable'])
-    ->where('any', '^((?!(nova-|phpunit|__)*).)*');

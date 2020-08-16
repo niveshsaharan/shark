@@ -1,3 +1,5 @@
+import {object_get, config} from "../../resources/js/functions";
+
 describe('Authentication', () => {
 
     before(() => cy.refreshDatabase());

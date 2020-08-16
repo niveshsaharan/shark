@@ -3,7 +3,9 @@ import {Context} from '@shopify/app-bridge-react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import {LoadingListener} from '.';
 import {Home, PageNotFound} from '../pages';
-import './Events';
+import Events from "./Events";
+
+window.Events = new Events();
 
 export default function() {
     return <>

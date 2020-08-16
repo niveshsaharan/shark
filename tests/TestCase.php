@@ -40,7 +40,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getRoutedView($view)
     {
-        $route = '/phpunit/' . uniqid() . '/' . $view;
+        $route = '/___/phpunit/' . uniqid() . '/' . $view;
 
         resolve(\Illuminate\Routing\Router::class)->get($route, function () use ($view) {
             return view($view);

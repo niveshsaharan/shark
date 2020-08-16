@@ -1,7 +1,7 @@
 /**
  * Global Events handler
  */
-class Events {
+export default class Events {
     /**
      * Constructor
      */
@@ -46,7 +46,7 @@ class Events {
      * Un-Queue Events
      */
     $off(event, callback) {
-        const { queue } = this;
+        const {queue} = this;
 
         if (typeof queue[event] !== 'undefined') {
             if (typeof callback === 'undefined') {
@@ -57,5 +57,3 @@ class Events {
         }
     }
 }
-
-window.Events = new Events();
