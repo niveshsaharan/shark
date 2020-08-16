@@ -49,7 +49,7 @@ describe('Authentication', () => {
             cy.get('[name="shop"]:invalid')
                 .should('have.length', 1)
                 .then(($input) => {
-                    expect("Please fill in this field.").to.eq($input[0].validationMessage)
+                    expect($input.get(0).checkValidity()).to.equal(false);
                 })
         });
 
