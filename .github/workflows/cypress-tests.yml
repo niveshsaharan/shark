@@ -57,6 +57,7 @@ jobs:
         with:
           record: true
           parallel: true
+          group: Parallel on ${{ matrix.os }} - ${{ matrix.php }}
           build: npm run production
           start: php artisan serve --host 0.0.0.0 --port 8000
           wait-on: http://localhost:8000
