@@ -16,7 +16,10 @@ yarn-error.log
 *_compiled.blade.php
 *_compiled.js
 
-# Vypress
+# Cypress
 cypress.json
 .env.cypress
 cypress/videos/*
+
+# Do not ignore
+!.env.*.example
