@@ -12,7 +12,7 @@ jobs:
         php: [7.4]
         machines: [1, 2]
 
-    name: P${{ matrix.php }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - ${{ matrix.os }} - M${{ matrix.machines }}
 
     steps:
       - name: Checkout code
