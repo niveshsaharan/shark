@@ -1,0 +1,60 @@
+name: Cypress Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        php: [7.4]
+
+    name: P${{ matrix.php }} - ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Copy ENV Laravel Configuration for CI
+        run: php -r "file_exists('.env') || copy('.env.cypress.example', '.env');"
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer install
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Create database and run migrations
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql  -u root -proot -e 'CREATE DATABASE IF NOT EXISTS shark;'
+          php artisan migrate:refresh --seed
+
+      - name: Copy Cypress configs
+        run: php -r "file_exists('cypress.json') || copy('cypress.json.example', 'cypress.json');"
+
+      - name: Cypress run
+          uses: cypress-io/github-action@v1
+          env:
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          with:
+            record: true
+            build: npm run production
+            start: npm start
+            wait-on: http://localhost:3030
