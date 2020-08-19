@@ -4,15 +4,20 @@ namespace App;
 
 use App\Formatters\ShopApiResponseFormatter;
 use App\Formatters\ShopWebhookResponseFormatter;
+use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Osiset\BasicShopifyAPI\ResponseAccess;
 use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
 use Osiset\ShopifyApp\Traits\ShopModel;
 
 class User extends Authenticatable implements IShopModel
 {
-    use Notifiable, ShopModel;
+    use Notifiable,
+        ShopModel,
+        HasApiTokens,
+        HasSettingsTable;
 
     protected $guarded = [];
 

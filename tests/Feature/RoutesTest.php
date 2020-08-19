@@ -13,17 +13,29 @@ class RoutesTest extends TestCase
 {
     /**
      * @test
+     * @dataProvider routes_middewares
      */
-    public function it_has_home_route_and_uses_correct_middlewares()
+    public function routes_uses_middlewares($route, $middelwares, $exact = false)
     {
-        $this->assertRouteUsesMiddleware('home', ['web', 'auth.shopify'], true);
+        $this->assertRouteUsesMiddleware($route, $middelwares, $exact);
     }
 
     /**
-     * @test
+     * Routes and Middlewares mappings
+     * @return array[]
      */
-    public function webhook_route_uses_correct_middlewares()
+    public function routes_middewares()
     {
-        $this->assertRouteUsesMiddleware('webhook', ['api', 'auth.webhook'], true);
+        return [
+            [
+                'home', ['web', 'auth.shopify'], true,
+            ],
+            [
+                'webhook', ['api', 'auth.webhook'], true,
+            ],
+            [
+                'api.settings.get', ['api', 'auth:sanctum'], true,
+            ],
+        ];
     }
 }
