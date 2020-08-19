@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "566662c9451fa435fadea8c5887e874f",
+    "content-hash": "e3e2abfe06d6a4e9d540d3c80d73535c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -289,10 +289,16 @@
         {
             "name": "centire/laravel-model-settings",
             "version": "dev-centire",
-            "dist": {
-                "type": "path",
-                "url": "../laravel-packages/laravel-model-settings",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/niveshsaharan/laravel-model-settings.git",
                 "reference": "eba8e6ca343d9b84b40d771d0e9b45be0bffddaa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-model-settings/zipball/eba8e6ca343d9b84b40d771d0e9b45be0bffddaa",
+                "reference": "eba8e6ca343d9b84b40d771d0e9b45be0bffddaa",
+                "shasum": ""
             },
             "require": {
                 "ext-json": "*",
@@ -363,9 +369,10 @@
                 "laravel-settings",
                 "settings"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/niveshsaharan/laravel-model-settings/tree/centire"
+            },
+            "time": "2020-08-19T11:09:09+00:00"
         },
         {
             "name": "centire/laravel-shopify",

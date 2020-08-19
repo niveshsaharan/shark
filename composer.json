@@ -73,8 +73,8 @@
     },
     "repositories": [
         {
-            "type" : "path",
-            "url" : "../laravel-packages/*"
+            "type" : "vcs",
+            "url" : "git@github.com:niveshsaharan/laravel-model-settings.git"
         }
     ]
 }
