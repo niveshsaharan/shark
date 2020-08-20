@@ -9,6 +9,11 @@ import {App} from './components';
 const shopOrigin = config('shop.shopify_domain');
 const apiKey = config('shopify.api_key');
 
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
+window.axiosApiClient = axios.create();
+
 ReactDOM.render(
     <AppProvider
         i18n={enTranslations}>

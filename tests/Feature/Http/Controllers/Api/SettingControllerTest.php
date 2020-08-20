@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Requests\UserSettingFormRequest;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -34,5 +36,41 @@ class SettingControllerTest extends TestCase
                  ->assertJson([
                      'settings' => $settings,
                  ]);
+    }
+
+    /**
+     * @test
+     */
+    public function save_uses_form_request()
+    {
+        $this->assertActionUsesFormRequest(SettingController::class, 'save', UserSettingFormRequest::class);
+    }
+
+    /**
+     * @test
+     */
+    public function save()
+    {
+        // Create a shop
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->put('/api/settings', [
+            'desktop_status' => true,
+            'mobile_status' => true,
+            'some-invalid-setting' => 'something', // this won't be saved
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJson([
+                'settings' => [
+                    'desktop_status' => true,
+                    'mobile_status' => true,
+                ],
+            ])
+            ->assertJsonMissing([
+                'settings' => [
+                    'some-invalid-setting' => 'something',
+                ],
+            ]);
     }
 }

@@ -36,6 +36,9 @@ class RoutesTest extends TestCase
             [
                 'api.settings.get', ['api', 'auth:sanctum'], true,
             ],
+            [
+                'api.settings.save', ['api', 'auth:sanctum'], true,
+            ],
         ];
     }
 }
