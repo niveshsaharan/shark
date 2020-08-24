@@ -12,12 +12,13 @@
                 'env'                     => config('app.env'),
                 'base_url'                => config('app.url'),
                 'csrfToken'               => csrf_token(),
-                'shopify' => \Illuminate\Support\Arr::only(config('shopify-app'), [
+                'shopify' => array_replace_recursive(\Illuminate\Support\Arr::only(config('shopify-app'), [
                     'appbridge_enabled',
                     'appbridge_version',
                     'app_name',
-                    'api_key',
                     'api_redirect',
+                ]), [
+                    'api_key' => auth()->user()->api()->getOptions()->getApiKey()
                 ]),
                  'shark' => \Illuminate\Support\Arr::only(config('shark'), [
                     'shopify_affiliate_url',
@@ -26,7 +27,7 @@
                     'demo_url'
                 ]),
                 'shop' => [
-                    'shopify_domain' => \Illuminate\Support\Facades\Auth::user()->name
+                    'shopify_domain' => auth()->user()->name
                 ],
                 'force_redirect' => config('shopify-app.appbridge_enabled'), // Can have multiple conditions in future like impersonating a shop
             ],JSON_PRETTY_PRINT) !!};
