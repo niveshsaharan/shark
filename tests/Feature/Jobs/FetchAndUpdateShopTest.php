@@ -55,7 +55,6 @@ class FetchAndUpdateShopTest extends TestCase
             'shopify_plus' => false,
         ];
 
-
         foreach (Arr::only($expected, [
             'shopify_gid',
             'domain',

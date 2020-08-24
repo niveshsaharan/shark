@@ -25,7 +25,7 @@ class CustomersDataRequestWebhookTest extends TestCase
         // Run the job
         $response = CustomersDataRequestWebhook::dispatchNow(
             ShopDomain::fromNative($shop->name),
-            json_decode(file_get_contents($this->fixturesPath . '/webhooks/customers__data_request.json'))
+            json_decode(file_get_contents($this->fixturesPath.'/webhooks/customers__data_request.json'))
         );
 
         $this->assertTrue($response);

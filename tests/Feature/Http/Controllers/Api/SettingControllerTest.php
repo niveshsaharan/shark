@@ -13,7 +13,6 @@ class SettingControllerTest extends TestCase
 {
     use RefreshDatabase, AdditionalAssertions;
 
-
     /** @test */
     public function index()
     {
@@ -28,7 +27,7 @@ class SettingControllerTest extends TestCase
             ],
         ];
 
-        config()->set('model_settings.defaultSettings.' . $user->getTable(), $settings);
+        config()->set('model_settings.defaultSettings.'.$user->getTable(), $settings);
 
         $response = $this->actingAs($user)->get('/api/settings');
 

@@ -42,7 +42,7 @@ class WebhookController extends Controller
          *
          * @var $jobClass \Illuminate\Foundation\Bus\Dispatchable
          */
-        $jobClass = '\\App\Webhooks\\' . str_replace('/', '', str_replace('-', '', ucwords($type, '-'))).'Webhook';
+        $jobClass = '\\App\Webhooks\\'.str_replace('/', '', str_replace('-', '', ucwords($type, '-'))).'Webhook';
 
         if (! class_exists($jobClass)) {
             abort(404, "Missing webhook handler for $type");

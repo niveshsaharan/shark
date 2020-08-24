@@ -25,7 +25,7 @@ class CustomersRedactWebhookTest extends TestCase
         // Run the job
         $response = CustomersRedactWebhook::dispatchNow(
             ShopDomain::fromNative($shop->name),
-            json_decode(file_get_contents($this->fixturesPath . '/webhooks/customers__redact.json'))
+            json_decode(file_get_contents($this->fixturesPath.'/webhooks/customers__redact.json'))
         );
 
         $this->assertTrue($response);

@@ -43,7 +43,6 @@ class User extends Authenticatable implements IShopModel
         'shopify_plus' => 'boolean',
     ];
 
-
     /**
      * Update from api response
      *

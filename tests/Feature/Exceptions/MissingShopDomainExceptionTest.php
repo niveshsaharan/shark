@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Exceptions;
 
-use Osiset\ShopifyApp\Exceptions\MissingShopDomainException;
 use Tests\TestCase;
 
 /**

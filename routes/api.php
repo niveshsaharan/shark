@@ -24,6 +24,6 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 Route::group(['middleware' => ['api']], function () {
-    Route::post('/webhook', '\\' . WebhookController::class);
-    Route::post('/webhook/{type}', '\\' . WebhookController::class)->name('webhook');
+    Route::post('/webhook', '\\'.WebhookController::class);
+    Route::post('/webhook/{type}', '\\'.WebhookController::class)->name('webhook');
 });

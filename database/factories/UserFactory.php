@@ -19,14 +19,14 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique()->slug . '.myshopify.com',
+        'name' => $faker->unique()->slug.'.myshopify.com',
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
         'shopify_grandfathered' => false,
         'shopify_freemium' => false,
-        'shopify_gid' => 'gid://shopify/Shop/' . $faker->unique()->numberBetween(1000000000, 9999999999),
+        'shopify_gid' => 'gid://shopify/Shop/'.$faker->unique()->numberBetween(1000000000, 9999999999),
         'domain' => $faker->domainName,
         'shop_name' => $faker->name,
         'contact_email' => $faker->email,
@@ -43,7 +43,7 @@ $factory->define(User::class, function (Faker $faker) {
         'money_with_currency_format' => '${{amount}} USD',
         'money_in_email_format' => '${{amount}}',
         'money_with_currency_in_email_format' => '${{amount}} USD',
-        'timezone_offset' => $faker->randomElement(['-', '+']) . rand(0, 12) . ':' . $faker->randomElement(['00', '15', '30', '45']),
+        'timezone_offset' => $faker->randomElement(['-', '+']).rand(0, 12).':'.$faker->randomElement(['00', '15', '30', '45']),
         'iana_timezone' => $faker->timezone,
         'shopify_plan_display_name' => 'basic',
         'shopify_partner' => false,

@@ -32,7 +32,6 @@ class FetchAndUpdateShopJob implements ShouldQueue
 
     /**
      * Execute the job
-     *
      */
     public function handle()
     {

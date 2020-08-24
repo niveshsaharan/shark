@@ -271,7 +271,7 @@ return [
 
         return [
             'topic' => $topic,
-            'address' => env('SHOPIFY_WEBHOOK_' . strtoupper(str_replace('/', '_', $topic)) . '_ADDRESS', (env('SHOPIFY_WEBHOOKS_DOMAIN') ?: env('APP_URL')) . '/webhook?topic=' . $topic),
+            'address' => env('SHOPIFY_WEBHOOK_'.strtoupper(str_replace('/', '_', $topic)).'_ADDRESS', (env('SHOPIFY_WEBHOOKS_DOMAIN') ?: env('APP_URL')).'/webhook?topic='.$topic),
         ];
     }, explode(',', env('SHOPIFY_WEBHOOKS'))) : [],
 

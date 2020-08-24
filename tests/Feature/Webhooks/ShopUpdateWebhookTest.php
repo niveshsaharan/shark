@@ -49,7 +49,6 @@ class ShopUpdateWebhookTest extends TestCase
             'shopify_plan_display_name' => 'Shopify Plus',
         ];
 
-
         foreach (Arr::only($expected, [
             'domain',
             'shop_name',
@@ -61,7 +60,7 @@ class ShopUpdateWebhookTest extends TestCase
         // Run the job
         $response = ShopUpdateWebhook::dispatchNow(
             ShopDomain::fromNative($shop->name),
-            json_decode(file_get_contents($this->fixturesPath . '/webhooks/shop__update.json'))
+            json_decode(file_get_contents($this->fixturesPath.'/webhooks/shop__update.json'))
         );
 
         $this->assertSame($response, 1);

@@ -19,6 +19,7 @@ class UserSettingFormRequestTest extends TestCase
 
         $this->subject = new UserSettingFormRequest();
     }
+
     /**
      * @test
      */

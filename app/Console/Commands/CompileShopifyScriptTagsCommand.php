@@ -31,13 +31,12 @@ class CompileShopifyScriptTagsCommand extends Command
         parent::__construct();
     }
 
-
     public function handle()
     {
         $files = File::glob(resource_path('views/script-tags/*.script-tag.js'));
 
         if (! $files) {
-            $this->alert("Nothing to compile!");
+            $this->alert('Nothing to compile!');
 
             return false;
         }
@@ -53,12 +52,12 @@ class CompileShopifyScriptTagsCommand extends Command
             $targetDir = resource_path('shopify');
 
             // put raw js
-            File::put(resource_path('views/script-tags/' . $fileRawName . '_compiled.blade.php'), File::get($file));
+            File::put(resource_path('views/script-tags/'.$fileRawName.'_compiled.blade.php'), File::get($file));
 
             // Create view
-            $script = view('script-tags.' . $fileRawName . '_compiled');
+            $script = view('script-tags.'.$fileRawName.'_compiled');
 
-            File::put($targetDir . '/' . $fileRawName . '_compiled.js', $script);
+            File::put($targetDir.'/'.$fileRawName.'_compiled.js', $script);
 
             $bar->advance();
 
@@ -67,7 +66,7 @@ class CompileShopifyScriptTagsCommand extends Command
 
         $bar->finish();
 
-        $this->line("");
-        $this->comment($success . '/'. count($files) . " file(s) compiled successfully.");
+        $this->line('');
+        $this->comment($success.'/'.count($files).' file(s) compiled successfully.');
     }
 }

@@ -11,7 +11,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, AdditionalAssertions;
 
-    protected $fixturesPath = __DIR__ . '/fixtures/';
+    protected $fixturesPath = __DIR__.'/fixtures/';
 
     protected function setApiStub(): void
     {
@@ -40,7 +40,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getRoutedView($view)
     {
-        $route = '/___/phpunit/' . uniqid() . '/' . $view;
+        $route = '/___/phpunit/'.uniqid().'/'.$view;
 
         resolve(\Illuminate\Routing\Router::class)->get($route, function () use ($view) {
             return view($view);

@@ -13,7 +13,6 @@ class UserTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-
     /** @test */
     public function table_has_expected_columns()
     {
@@ -58,7 +57,6 @@ class UserTest extends TestCase
         );
     }
 
-
     /**
      * @test
      */
@@ -77,7 +75,6 @@ class UserTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
-
 
     /**
      * @test
@@ -153,7 +150,7 @@ class UserTest extends TestCase
 
         $email = $this->faker->safeEmail;
 
-        $webhookResponse = (object)[
+        $webhookResponse = (object) [
             'customer_email' => $email,
         ];
 

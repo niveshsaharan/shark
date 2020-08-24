@@ -6,7 +6,6 @@ use Exception;
 
 class MissingShopDomainException extends Exception
 {
-
     /**
      * Report the exception.
      *

@@ -17,6 +17,7 @@ class AppServiceProviderTest extends TestCase
 
         $this->assertSame($expected, resolve(ShopApiResponseFormatter::class));
     }
+
     /**
      * @test
      */

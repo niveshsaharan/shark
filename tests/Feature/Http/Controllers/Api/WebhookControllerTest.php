@@ -56,7 +56,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         // Check it was created and job was pushed
@@ -97,7 +97,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         // Check it was created and job was pushed
@@ -133,7 +133,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(403);
@@ -146,7 +146,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(403);
@@ -174,7 +174,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(404);
@@ -187,7 +187,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(404);
@@ -206,7 +206,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             [],
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(401);
@@ -225,7 +225,7 @@ class WebhookControllerTest extends TestCase
             [],
             [],
             $headers,
-            file_get_contents($this->fixturesPath . '/webhooks/shop__update.json')
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
         );
 
         $response->assertStatus(401);

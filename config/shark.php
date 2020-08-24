@@ -25,7 +25,6 @@ return [
 
     'app_slug' => env('SHOPIFY_APP_SLUG'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Shopify App description
@@ -36,7 +35,6 @@ return [
     */
 
     'app_description' => env('SHARK_APP_DESCRIPTION', 'Simple Shopify app that help you make your store more attractive.'),
-
 
     /*
     |--------------------------------------------------------------------------

@@ -25,7 +25,6 @@ class ShopWebhookResponseFormatter
             ->toArray();
     }
 
-
     public function rules(): array
     {
         return [
