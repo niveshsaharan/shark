@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
 use Osiset\BasicShopifyAPI\ResponseAccess;
+use Osiset\ShopifyApp\Contracts\ApiHelper as IApiHelper;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -50,6 +51,10 @@ class UserTest extends TestCase
                 'shopify_partner',
                 'shopify_plus',
                 'shopify_scopes',
+                'api_type',
+                'api_key',
+                'api_password',
+                'api_secret',
                 'created_at',
                 'updated_at',
                 'deleted_at',
@@ -160,5 +165,106 @@ class UserTest extends TestCase
 
         $this->assertSame($response, 1);
         $this->assertSame($email, $shop->contact_email);
+    }
+
+    /**
+     * @test
+     */
+    public function isUsingPublicApp()
+    {
+        $shop = factory(User::class)->make([
+            'api_type' => 'public',
+        ]);
+
+        $this->assertTrue($shop->isUsingPublicApp());
+
+        $shop->api_type = 'some-invalid-value';
+        $this->assertTrue($shop->isUsingPublicApp());
+
+        $shop->api_type = 'private';
+        $shop->api_key = 'value';
+        $shop->api_secret = 'value';
+        $shop->api_password = 'value';
+        $this->assertFalse($shop->isUsingPublicApp());
+    }
+
+    /**
+     * @test
+     */
+    public function isUsingPrivateApp()
+    {
+        $shop = factory(User::class)->make([
+            'api_type' => 'private',
+            'api_key' => 'some-key',
+            'api_secret' => 'some-secret',
+            'api_password' => 'some-password',
+        ]);
+
+        $this->assertTrue($shop->isUsingPrivateApp());
+
+        $shop->api_key = null;
+        $this->assertFalse($shop->isUsingPrivateApp());
+
+        $shop->api_type = 'public';
+        $this->assertFalse($shop->isUsingPrivateApp());
+    }
+
+    /**
+     * @test
+     */
+    public function isUsingCustomApp()
+    {
+        $shop = factory(User::class)->make([
+            'api_type' => 'custom',
+            'api_key' => 'some-key',
+            'api_secret' => 'some-secret',
+        ]);
+
+        $this->assertTrue($shop->isUsingCustomApp());
+
+        $shop->api_key = null;
+        $this->assertFalse($shop->isUsingCustomApp());
+
+        $shop->api_type = 'public';
+        $this->assertFalse($shop->isUsingCustomApp());
+    }
+
+    /**
+     * @test
+     */
+    public function apiHelper()
+    {
+        $publicShop = factory(User::class)->make();
+        $this->assertInstanceOf(IApiHelper::class, $publicShop->apiHelper());
+
+        //
+        $privateAppShop = factory(User::class)->make([
+            'api_type' => 'private',
+            'api_key' => 'api-key',
+            'api_secret' => 'api-secret',
+            'api_password' => 'api-password',
+        ]);
+
+        $privateAppShopApiHelper = $privateAppShop->apiHelper();
+        $privateAppShopApiHelperOptions = $privateAppShopApiHelper->getApi()->getOptions();
+        $this->assertInstanceOf(IApiHelper::class, $privateAppShopApiHelper);
+        $this->assertSame('api-key', $privateAppShopApiHelperOptions->getApiKey());
+        $this->assertSame('api-secret', $privateAppShopApiHelperOptions->getApiSecret());
+        $this->assertSame('api-password', $privateAppShopApiHelperOptions->getApiPassword());
+        $this->assertTrue($privateAppShopApiHelperOptions->isPrivate());
+
+        //
+        $customAppShop = factory(User::class)->make([
+            'api_type' => 'custom',
+            'api_key' => 'api-key',
+            'api_secret' => 'api-secret',
+        ]);
+
+        $customAppShopApiHelper = $customAppShop->apiHelper();
+        $customAppShopApiHelperOptions = $customAppShopApiHelper->getApi()->getOptions();
+        $this->assertInstanceOf(IApiHelper::class, $customAppShopApiHelper);
+        $this->assertSame('api-key', $customAppShopApiHelperOptions->getApiKey());
+        $this->assertSame('api-secret', $customAppShopApiHelperOptions->getApiSecret());
+        $this->assertTrue($customAppShopApiHelperOptions->isPublic());
     }
 }

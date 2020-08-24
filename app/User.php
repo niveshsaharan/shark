@@ -9,15 +9,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Osiset\BasicShopifyAPI\ResponseAccess;
+use Osiset\ShopifyApp\Contracts\ApiHelper as IApiHelper;
 use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
 use Osiset\ShopifyApp\Traits\ShopModel;
 
 class User extends Authenticatable implements IShopModel
 {
     use Notifiable,
-        ShopModel,
         HasApiTokens,
         HasSettingsTable;
+    use ShopModel {
+        apiHelper as originalApiHelper;
+    }
 
     protected $guarded = [];
 
@@ -71,5 +74,59 @@ class User extends Authenticatable implements IShopModel
         $response = app(ShopWebhookResponseFormatter::class)->format($data);
 
         return $query->update($response);
+    }
+
+    /**
+     * Check if shop is using a public app
+     * @return bool
+     */
+    public function isUsingPublicApp()
+    {
+        return $this->api_type === 'public' || ! ($this->isUsingPrivateApp() || $this->isUsingCustomApp());
+    }
+
+    /**
+     * Check if shop is using a private app
+     * @return bool
+     */
+    public function isUsingPrivateApp()
+    {
+        return $this->api_type === 'private' && $this->api_key && $this->api_secret && $this->api_password;
+    }
+
+    /**
+     * Check if shop is using a custom app
+     * @return bool
+     */
+    public function isUsingCustomApp()
+    {
+        return $this->api_type === 'custom' && $this->api_key && $this->api_secret;
+    }
+
+    /**
+     * Overwrite configuration to use Public/Private/Custom app
+     * @return \Osiset\ShopifyApp\Contracts\ApiHelper
+     */
+    public function apiHelper(): IApiHelper
+    {
+        $apiHelper = $this->originalApiHelper();
+
+        $opts = $apiHelper->getApi()->getOptions();
+
+        if ($this->isUsingPrivateApp()) {
+            $opts->setApiKey($this->api_key);
+            $opts->setApiSecret($this->api_secret);
+            $opts->setApiPassword($this->api_password);
+            $opts->setType(true);
+        } elseif ($this->isUsingCustomApp()) {
+            $opts = $apiHelper->getApi()->getOptions();
+            $opts->setApiKey($this->api_key);
+            $opts->setApiSecret($this->api_secret);
+            $opts->setType(false);
+        }
+
+        $apiHelper->getApi()->setOptions($opts);
+
+        return $apiHelper;
     }
 }
