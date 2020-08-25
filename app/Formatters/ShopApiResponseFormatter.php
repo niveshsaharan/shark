@@ -32,6 +32,7 @@ class ShopApiResponseFormatter
             'shopify_gid' => 'id',
             'domain' => 'primaryDomain.host',
             'shop_name' => 'name',
+            'shop_email' => 'email',
             'contact_email' => 'contactEmail',
             'city' => 'billingAddress.city',
             'province' => 'billingAddress.province',

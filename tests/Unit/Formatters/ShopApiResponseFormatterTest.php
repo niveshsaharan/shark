@@ -19,6 +19,7 @@ class ShopApiResponseFormatterTest extends TestCase
             'shopify_gid' => 'gid://shopify/Shop/6587023382',
             'domain' => 'graphql-admin.myshopify.com',
             'shop_name' => 'graphql-admin',
+            'shop_email' => 'shayne@shopify.com',
             'contact_email' => 'shayne@shopify.com',
             'city' => 'Test City',
             'province' => 'Ontario',

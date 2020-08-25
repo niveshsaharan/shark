@@ -30,6 +30,7 @@ class ShopWebhookResponseFormatter
         return [
             'domain' => 'domain',
             'shop_name' => 'name',
+            'shop_email' => 'email',
             'contact_email' => 'customer_email',
             'city' => 'city',
             'province' => 'province',

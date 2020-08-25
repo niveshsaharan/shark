@@ -31,6 +31,7 @@ class ShopUpdateWebhookTest extends TestCase
         $expected = [
             'domain' => 'shop.apple.com',
             'shop_name' => 'Apple Computers',
+            'shop_email' => 'steve@apple.com',
             'contact_email' => 'customers@apple.com',
             'city' => 'Cupertino',
             'province' => 'California',
