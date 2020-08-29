@@ -380,12 +380,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/niveshsaharan/laravel-shopify.git",
-                "reference": "6a9457438f3acdc09b3d8cc0f9147c50b74b5b1a"
+                "reference": "fa71862f4ba2b30c56e766f574dcddb83f05cdc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/6a9457438f3acdc09b3d8cc0f9147c50b74b5b1a",
-                "reference": "6a9457438f3acdc09b3d8cc0f9147c50b74b5b1a",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/fa71862f4ba2b30c56e766f574dcddb83f05cdc3",
+                "reference": "fa71862f4ba2b30c56e766f574dcddb83f05cdc3",
                 "shasum": ""
             },
             "require": {
@@ -443,7 +443,7 @@
                 "shopify",
                 "shopify-api"
             ],
-            "time": "2020-08-24T12:58:44+00:00"
+            "time": "2020-08-29T13:42:43+00:00"
         },
         {
             "name": "chrisharrison/php-array-of",

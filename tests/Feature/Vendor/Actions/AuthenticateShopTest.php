@@ -10,6 +10,7 @@ use Osiset\ShopifyApp\Actions\AuthorizeShop;
 use Osiset\ShopifyApp\Actions\DispatchScripts;
 use Osiset\ShopifyApp\Actions\DispatchWebhooks;
 use Osiset\ShopifyApp\Contracts\ApiHelper as IApiHelper;
+use Osiset\ShopifyApp\Contracts\Queries\Shop as IShopQuery;
 use Osiset\ShopifyApp\Services\ShopSession;
 use Tests\TestCase;
 
@@ -22,7 +23,7 @@ class AuthenticateShopTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_public_app()
     {
-        $action = new AuthenticateShop(resolve(ShopSession::class), resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class));
+        $action = new AuthenticateShop(resolve(ShopSession::class), resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class), resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($action));
         $apiHelper = $class->getProperty('apiHelper');
@@ -46,7 +47,7 @@ class AuthenticateShopTest extends TestCase
 
         $shopSession = resolve(ShopSession::class);
         $shopSession->make($shop->getDomain());
-        $action = new AuthenticateShop($shopSession, resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class));
+        $action = new AuthenticateShop($shopSession, resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class), resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($action));
         $apiHelper = $class->getProperty('apiHelper');
@@ -73,7 +74,7 @@ class AuthenticateShopTest extends TestCase
 
         $shopSession = resolve(ShopSession::class);
         $shopSession->make($shop->getDomain());
-        $action = new AuthenticateShop($shopSession, resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class));
+        $action = new AuthenticateShop($shopSession, resolve(IApiHelper::class), resolve(AuthorizeShop::class), resolve(DispatchScripts::class), resolve(DispatchWebhooks::class), resolve(AfterAuthorize::class), resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($action));
         $apiHelper = $class->getProperty('apiHelper');
