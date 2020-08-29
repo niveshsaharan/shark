@@ -292,12 +292,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/niveshsaharan/laravel-model-settings.git",
-                "reference": "eba8e6ca343d9b84b40d771d0e9b45be0bffddaa"
+                "reference": "e35cae7769832e70ed0c2f380d539ec95df727c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/niveshsaharan/laravel-model-settings/zipball/eba8e6ca343d9b84b40d771d0e9b45be0bffddaa",
-                "reference": "eba8e6ca343d9b84b40d771d0e9b45be0bffddaa",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-model-settings/zipball/e35cae7769832e70ed0c2f380d539ec95df727c5",
+                "reference": "e35cae7769832e70ed0c2f380d539ec95df727c5",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +372,7 @@
             "support": {
                 "source": "https://github.com/niveshsaharan/laravel-model-settings/tree/centire"
             },
-            "time": "2020-08-19T11:09:09+00:00"
+            "time": "2020-08-25T07:37:14+00:00"
         },
         {
             "name": "centire/laravel-shopify",
@@ -1455,16 +1455,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.98",
+            "version": "v1.2.99",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "02b24e5d4dc347737577f48c688ee14c3b5dfd4f"
+                "reference": "0ffea34489b258a2709bfe93a9553e1efa5d1904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/02b24e5d4dc347737577f48c688ee14c3b5dfd4f",
-                "reference": "02b24e5d4dc347737577f48c688ee14c3b5dfd4f",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/0ffea34489b258a2709bfe93a9553e1efa5d1904",
+                "reference": "0ffea34489b258a2709bfe93a9553e1efa5d1904",
                 "shasum": ""
             },
             "require": {
@@ -1500,7 +1500,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2020-08-20T18:36:15+00:00"
+            "time": "2020-08-25T21:35:55+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -1583,16 +1583,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.25.0",
+            "version": "v7.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fdf3d4a40447eb286ba3820768306cae64bcc0b3"
+                "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fdf3d4a40447eb286ba3820768306cae64bcc0b3",
-                "reference": "fdf3d4a40447eb286ba3820768306cae64bcc0b3",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
+                "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
                 "shasum": ""
             },
             "require": {
@@ -1698,6 +1698,7 @@
                 "nyholm/psr7": "Required to use PSR-7 bridging features (^1.2).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
                 "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
+                "predis/predis": "Required to use the predis connector (^1.1.2).",
                 "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
                 "symfony/cache": "Required to PSR-6 cache bridge (^5.0).",
@@ -1736,7 +1737,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-08-11T13:43:10+00:00"
+            "time": "2020-08-27T14:22:46+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -1813,34 +1814,34 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v2.4.2",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "cf07490b92e07ee6206f712d4502e8a2a41f5049"
+                "reference": "ab84ea1bda5a1c65bf00dac0fdc07b3d59ad58a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/cf07490b92e07ee6206f712d4502e8a2a41f5049",
-                "reference": "cf07490b92e07ee6206f712d4502e8a2a41f5049",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/ab84ea1bda5a1c65bf00dac0fdc07b3d59ad58a9",
+                "reference": "ab84ea1bda5a1c65bf00dac0fdc07b3d59ad58a9",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "illuminate/contracts": "^6.9|^7.0",
-                "illuminate/database": "^6.9|^7.0",
-                "illuminate/support": "^6.9|^7.0",
+                "illuminate/contracts": "^6.9|^7.0|^8.0",
+                "illuminate/database": "^6.9|^7.0|^8.0",
+                "illuminate/support": "^6.9|^7.0|^8.0",
                 "php": "^7.2"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
                 "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-master": "2.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1869,7 +1870,7 @@
                 "laravel",
                 "sanctum"
             ],
-            "time": "2020-06-16T19:14:01+00:00"
+            "time": "2020-08-25T18:01:25+00:00"
         },
         {
             "name": "laravel/telescope",
@@ -2431,16 +2432,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.38.0",
+            "version": "2.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d8f6a6a91d1eb9304527b040500f61923e97674b"
+                "reference": "0a41ea7f7fedacf307b7a339800e10356a042918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d8f6a6a91d1eb9304527b040500f61923e97674b",
-                "reference": "d8f6a6a91d1eb9304527b040500f61923e97674b",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0a41ea7f7fedacf307b7a339800e10356a042918",
+                "reference": "0a41ea7f7fedacf307b7a339800e10356a042918",
                 "shasum": ""
             },
             "require": {
@@ -2516,7 +2517,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-04T19:12:46+00:00"
+            "time": "2020-08-24T12:35:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2633,16 +2634,16 @@
         },
         {
             "name": "osiset/basic-shopify-api",
-            "version": "v9.1.3",
+            "version": "v9.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/osiset/Basic-Shopify-API.git",
-                "reference": "a107821e3705254585d675be29b85924f1777ddc"
+                "reference": "43b1165a9b4a2f432f1943a052d21cb33c504197"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/osiset/Basic-Shopify-API/zipball/a107821e3705254585d675be29b85924f1777ddc",
-                "reference": "a107821e3705254585d675be29b85924f1777ddc",
+                "url": "https://api.github.com/repos/osiset/Basic-Shopify-API/zipball/43b1165a9b4a2f432f1943a052d21cb33c504197",
+                "reference": "43b1165a9b4a2f432f1943a052d21cb33c504197",
                 "shasum": ""
             },
             "require": {
@@ -2678,7 +2679,7 @@
                 "rest",
                 "shopify"
             ],
-            "time": "2020-08-22T15:31:35+00:00"
+            "time": "2020-08-25T13:25:33+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6053,21 +6054,21 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.3.4",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "0eeb0de4fc1078433f0915010bd8f41e998adcb4"
+                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/0eeb0de4fc1078433f0915010bd8f41e998adcb4",
-                "reference": "0eeb0de4fc1078433f0915010bd8f41e998adcb4",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/25907a113bfc212a38d458ae365bfb902b4e7fb8",
+                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8",
                 "shasum": ""
             },
             "require": {
                 "facade/ignition-contracts": "~1.0",
-                "illuminate/pipeline": "^5.5|^6.0|^7.0",
+                "illuminate/pipeline": "^5.5|^6.0|^7.0|^8.0",
                 "php": "^7.1",
                 "symfony/http-foundation": "^3.3|^4.1|^5.0",
                 "symfony/mime": "^3.4|^4.0|^5.1",
@@ -6111,7 +6112,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-07-13T23:25:57+00:00"
+            "time": "2020-08-26T18:06:23+00:00"
         },
         {
             "name": "facade/ignition",
@@ -7372,16 +7373,16 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.18.1.1",
+            "version": "v9.18.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558"
+                "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/52fc21c99fd888e33aed4879e55a3646f8d40558",
-                "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
+                "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
                 "shasum": ""
             },
             "require": {
@@ -7443,7 +7444,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-02T05:59:21+00:00"
+            "time": "2020-08-27T03:24:44+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

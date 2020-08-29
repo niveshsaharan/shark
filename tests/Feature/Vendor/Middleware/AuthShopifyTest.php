@@ -5,6 +5,7 @@ namespace Tests\Feature\Vendor\Middleware;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Osiset\ShopifyApp\Contracts\ApiHelper as IApiHelper;
+use Osiset\ShopifyApp\Contracts\Queries\Shop as IShopQuery;
 use Osiset\ShopifyApp\Http\Middleware\AuthShopify as AuthShopifyMiddleware;
 use Osiset\ShopifyApp\Services\ShopSession;
 use Tests\TestCase;
@@ -18,7 +19,7 @@ class AuthShopifyTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_public_app()
     {
-        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), resolve(ShopSession::class));
+        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), resolve(ShopSession::class), resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($middleware));
         $apiHelper = $class->getProperty('apiHelper');
@@ -42,7 +43,7 @@ class AuthShopifyTest extends TestCase
 
         $shopSession = resolve(ShopSession::class);
         $shopSession->make($shop->getDomain());
-        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), $shopSession);
+        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), $shopSession, resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($middleware));
         $apiHelper = $class->getProperty('apiHelper');
@@ -69,7 +70,7 @@ class AuthShopifyTest extends TestCase
 
         $shopSession = resolve(ShopSession::class);
         $shopSession->make($shop->getDomain());
-        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), $shopSession);
+        $middleware = new AuthShopifyMiddleware(resolve(IApiHelper::class), $shopSession, resolve(IShopQuery::class));
 
         $class = new \ReflectionClass(get_class($middleware));
         $apiHelper = $class->getProperty('apiHelper');
