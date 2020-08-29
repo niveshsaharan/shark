@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('shopify-app::home.index');
-})
+Route::view('/', 'shopify-app::home.index')
     ->middleware(['auth.shopify'])
     ->name('home');
+
+Route::view('/{any}', 'shopify-app::home.index')
+    ->middleware(['auth.shopify'])
+    ->name('any')
+    ->where('any', '^(?!nova|admin|shark|___.*$).*');
