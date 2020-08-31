@@ -54,6 +54,7 @@ jobs:
         uses: cypress-io/github-action@v1
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
         with:
           record: true
           parallel: true
