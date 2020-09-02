@@ -14,6 +14,21 @@ You can clone the repository:
 git clone nivehsharan/shark
 ```
 
+## Admin
+Laravel Nova is used to build the admin panel so if you need to use it, you must have a valid licence for Laravel Nova. If you  don't have it, you can get it by visiting https://nova.laravel.com
+
+Once you have the licence, you can run following command to install it:
+
+```bash
+php artisan shark:admin:install
+```
+
+Create an admin user by running following command:
+
+```bash
+php artisan shark:admin:user
+```
+
 ## Testing
 
 ``` bash
