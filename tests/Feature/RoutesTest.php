@@ -39,6 +39,9 @@ class RoutesTest extends TestCase
             [
                 'api.settings.save', ['api', 'auth:sanctum'], true,
             ],
+            [
+                'horizon.index', ['web', 'admin'],
+            ],
         ];
     }
 }
