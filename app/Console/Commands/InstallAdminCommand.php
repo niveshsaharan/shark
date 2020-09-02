@@ -87,7 +87,7 @@ class InstallAdminCommand extends Command
         file_put_contents(config_path('app.php'), str_replace("        {$namespace}Providers\NovaServiceProvider::class,".PHP_EOL, '', file_get_contents(config_path('app.php'))));
 
         File::moveDirectory(app_path('/Nova'), app_path('/Nova_Backup'), true);
-        $this->call('nova:install');
+        shell_exec('php artisan nova:install');
         File::moveDirectory(app_path('/Nova_Backup'), app_path('/Nova'), true);
     }
 }

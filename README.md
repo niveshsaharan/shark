@@ -1,7 +1,7 @@
 # SHARK: Shopify app rapid-development kit
 
 ![Tests](https://github.com/niveshsaharan/shark/workflows/Tests/badge.svg)
-[![Shark](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/cm138z/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/cm138z/runs)
+[![Shark](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/47ezsk/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/cm138z/runs)
 
 
 I am building this as starting point for all my future Shopify apps
