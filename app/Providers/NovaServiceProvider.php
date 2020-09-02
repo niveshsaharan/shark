@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Admin;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Nova\Nova;
@@ -72,9 +73,21 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function cards()
     {
-        return [
-
+        $cards = [
+            (new \App\Nova\Metrics\ValueMetrics())->model(User::class)->dateColumn('created_at')->setName('Shops'),
+            (new \App\Nova\Metrics\TrendMetrics())->model(User::class)->column('created_at')->setName('Shops Per Day'),
         ];
+
+        if (config('queue.default') == 'redis') {
+            $cards = array_merge($cards, [
+                new \Kreitje\NovaHorizonStats\JobsPastHour(60),
+                new \Kreitje\NovaHorizonStats\FailedJobsPastHour(60),
+                new \Kreitje\NovaHorizonStats\Processes(60),
+                new \Kreitje\NovaHorizonStats\Workload(60),
+            ]);
+        }
+
+        return $cards;
     }
 
     /**
@@ -108,6 +121,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->withMeta(['external' => true, 'target' => '_self']),
 
             new \Spatie\BackupTool\BackupTool(),
+
+            new \KABBOUCHI\LogsTool\LogsTool(),
         ];
     }
 

@@ -31,6 +31,8 @@ class InstallAdminCommand extends Command
         'epartment/nova-dependency-container' => '^1.2',
         'niveshsaharan/novalinkresource' => '^1.0',
         'spatie/nova-backup-tool' => '^4.0',
+        'kabbouchi/nova-logs-tool' => '^0.2.0',
+        'kreitje/nova-horizon-stats' => '^0.3.0',
     ];
 
     /**

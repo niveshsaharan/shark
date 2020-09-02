@@ -179,7 +179,10 @@ class User extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            (new \App\Nova\Metrics\ValueMetrics())->model(\App\User::class)->dateColumn('created_at')->setName('Shops'),
+            (new \App\Nova\Metrics\TrendMetrics())->model(\App\User::class)->column('created_at')->setName('Shops Per Day'),
+        ];
     }
 
     /**
