@@ -29,6 +29,8 @@ class InstallAdminCommand extends Command
         'laravel/nova' => '~3.0',
         'kabbouchi/nova-impersonate' => '^1.3',
         'epartment/nova-dependency-container' => '^1.2',
+        'niveshsaharan/novalinkresource' => '^1.0',
+        'spatie/nova-backup-tool' => '^4.0',
     ];
 
     /**
@@ -72,7 +74,7 @@ class InstallAdminCommand extends Command
         file_put_contents(base_path().'/composer.json', json_encode($composerContent, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 
         $this->comment('Running `composer update`...');
-        shell_exec('composer update');
+        shell_exec('php -d memory_limit=-1 /usr/local/bin/composer update');
     }
 
     /**
