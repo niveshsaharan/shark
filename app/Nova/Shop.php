@@ -7,9 +7,11 @@ use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use KABBOUCHI\NovaImpersonate\Impersonate;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
@@ -17,7 +19,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Timezone;
 use Laravel\Nova\Panel;
 
-class User extends Resource
+class Shop extends Resource
 {
     use ResourceCommon, HasDependencies;
 
@@ -155,6 +157,8 @@ class User extends Resource
 
             new Panel('Shopify API', $this->shopifyApiFields()),
 
+            BelongsTo::make('Billing Plan', 'plan', Plan::class),
+
             DateTime::make('Created', 'created_at')
                 ->format('MMM, DD YYYY')
                 ->hideWhenCreating()
@@ -166,6 +170,7 @@ class User extends Resource
                 ->onlyOnDetail(),
 
             Impersonate::make($this),
+            HasMany::make('Charges'),
         ];
 
         return $fields;

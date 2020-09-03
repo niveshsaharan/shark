@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -75,11 +76,7 @@ class Admin extends Resource
                 ->updateRules('nullable', 'string', 'min:6'),
 
             Select::make('Admin type', 'type')
-                  ->hideFromIndex()
                   ->displayUsingLabels()
-                  ->canSee(function () use ($request) {
-                      return $request->user('admin')->isSuperAdmin() && $this->id !== $request->user()->id;
-                  })
                   ->options($request->user()->isSuperAdmin()
                       ? [
                           \App\Admin::ADMIN_TYPE => 'Admin',
@@ -88,6 +85,16 @@ class Admin extends Resource
                       : [
                           \App\Admin::ADMIN_TYPE => 'Admin',
                       ]),
+
+            DateTime::make('Created', 'created_at')
+                ->format('MMM, DD YYYY')
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->sortable(),
+
+            DateTime::make('Updated At')
+                ->format('MMM, DD YYYY')
+                ->onlyOnDetail(),
         ];
 
         return $fields;
