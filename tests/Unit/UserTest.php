@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Tester;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
@@ -227,6 +229,138 @@ class UserTest extends TestCase
 
         $shop->api_type = 'public';
         $this->assertFalse($shop->isUsingCustomApp());
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_one_tester()
+    {
+        $shop = factory(User::class)->create([
+            'name' => 'shop-1.myshopify.com',
+        ]);
+
+        $this->assertEquals(0, $shop->tester()->count());
+
+        $tester = factory(Tester::class)->create([
+            'shopify_domain' => $shop->name,
+        ]);
+
+        $this->assertEquals(1, $shop->tester()->count());
+        $this->assertTrue($tester->is($shop->tester));
+    }
+
+    /**
+     * @test
+     */
+    public function isTester_by_plan_name()
+    {
+        $shop1 = factory(User::class)->create([
+            'shopify_plan_display_name' => 'plan1',
+        ]);
+
+        $shop2 = factory(User::class)->create([
+            'shopify_plan_display_name' => 'plan2',
+        ]);
+
+        config()->set('shark.tester_plans', ['plan1', 'plan3']);
+
+        $this->assertTrue($shop1->isTester());
+        $this->assertFalse($shop2->isTester());
+
+        config()->set('shark.tester_plans', ['plan2', 'plan3']);
+
+        $this->assertFalse($shop1->isTester());
+        $this->assertTrue($shop2->isTester());
+    }
+
+    /**
+     * @test
+     */
+    public function isTester_by_shopify_domain_in_config()
+    {
+        $shop1 = factory(User::class)->create([
+            'name' => 'my-shop1.myshopify.com',
+        ]);
+
+        $shop2 = factory(User::class)->create([
+            'name' => 'my-test-shop.myshopify.com',
+        ]);
+
+        config()->set('shark.tester_shops', ['my-test-shop.myshopify.com']);
+
+        $this->assertFalse($shop1->isTester());
+        $this->assertTrue($shop2->isTester());
+
+        config()->set('shark.tester_shops', ['my-shop1.myshopify.com']);
+
+        $this->assertTrue($shop1->isTester());
+        $this->assertFalse($shop2->isTester());
+    }
+
+    /**
+     * @test
+     */
+    public function isTester_by_shopify_partner_as_test()
+    {
+        $shop1 = factory(User::class)->create([
+            'shopify_partner' => true,
+        ]);
+
+        $shop2 = factory(User::class)->create([
+            'shopify_partner' => false,
+        ]);
+
+        config()->set('shark.shopify_partner_as_tester', true);
+
+        $this->assertTrue($shop1->isTester());
+        $this->assertFalse($shop2->isTester());
+
+        config()->set('shark.shopify_partner_as_tester', false);
+
+        $this->assertFalse($shop1->isTester());
+        $this->assertFalse($shop2->isTester());
+    }
+
+    /**
+     * @test
+     */
+    public function isTester_by_record_in_testers_table()
+    {
+        $shop1 = factory(User::class)->create([
+            'name' => 'shop1.myshopify.com',
+        ]);
+
+        $shop2 = factory(User::class)->create([
+            'name' => 'shop2.myshopify.com',
+        ]);
+
+        $shop3 = factory(User::class)->create([
+            'name' => 'shop3.myshopify.com',
+        ]);
+
+        $this->assertFalse($shop1->isTester());
+        $this->assertFalse($shop2->isTester());
+        $this->assertFalse($shop3->isTester());
+
+        // Create tester record
+        factory(Tester::class)->create([
+            'shopify_domain' => 'shop1.myshopify.com',
+        ]);
+
+        factory(Tester::class)->create([
+            'shopify_domain' => 'shop2.myshopify.com',
+            'expires_at' => Carbon::tomorrow(),
+        ]);
+
+        factory(Tester::class)->create([
+            'shopify_domain' => 'shop3.myshopify.com',
+            'expires_at' => Carbon::yesterday(),
+        ]);
+
+        $this->assertTrue($shop1->isTester());
+        $this->assertTrue($shop2->isTester());
+        $this->assertFalse($shop3->isTester());
     }
 
     /**

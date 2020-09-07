@@ -104,6 +104,26 @@ class User extends Authenticatable implements IShopModel
     }
 
     /**
+     * Shop can be a tester
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tester()
+    {
+        return $this->hasOne(Tester::class, 'shopify_domain', 'name');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isTester(): bool
+    {
+        return in_array($this->shopify_plan_display_name, config('shark.tester_plans'))
+            || in_array($this->name, config('shark.tester_shops'))
+            || ($this->shopify_partner && config('shark.shopify_partner_as_tester') === true)
+            || $this->tester()->active()->count() > 0;
+    }
+
+    /**
      * Overwrite configuration to use Public/Private/Custom app
      * @return \Osiset\ShopifyApp\Contracts\ApiHelper
      */

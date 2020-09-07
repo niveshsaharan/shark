@@ -45,4 +45,34 @@ return [
     |
     */
     'demo_url' => env('SHARK_DEMO_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Test Shops
+    |--------------------------------------------------------------------------
+    |
+    | Shops having their myshopify.com domain in the following list will be able to
+    | use the app without real charge
+    */
+    'tester_shops' => array_filter(explode(',', env('SHOPIFY_TESTER_SHOPS'))),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Test Plans
+    |--------------------------------------------------------------------------
+    |
+    | The shops on one of these plans will be able to use the app without any real charge.
+    | It is helpful when you want to allow shopify partners to test and use the app free of charge
+    */
+    'tester_plans' => array_filter(explode(',', env('SHOPIFY_TESTER_PLANS'))),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Shopify Partner as Tester
+    |--------------------------------------------------------------------------
+    |
+    | If this is set to true, Shopify partners will be able to use the app without any real charge.
+    | It is helpful when you want to allow shopify partners to test and use the app free of charge
+    */
+    'shopify_partner_as_tester' => env('SHOPIFY_PARTNER_AS_TESTER_ENABLED', false),
 ];
