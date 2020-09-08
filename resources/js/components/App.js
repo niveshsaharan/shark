@@ -1,7 +1,7 @@
 import React from 'react';
 import {Context} from '@shopify/app-bridge-react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import {LoadingListener} from '.';
+import {LoadingListener, FlashListener, ConfirmListener} from '.';
 import {Home, PageNotFound} from '../pages';
 import Events from "./Events";
 
@@ -29,6 +29,8 @@ export default function() {
                                 </Switch>
                             </BrowserRouter>
                             <LoadingListener />
+                            <FlashListener />
+                            <ConfirmListener />
                         </>
                     );
                 }}
