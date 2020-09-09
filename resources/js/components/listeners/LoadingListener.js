@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Frame as PolarisFrame, Loading } from '@shopify/polaris';
 
 export default class LoadingListener extends Component {
-
     state = {
         loading: false,
     };
@@ -36,7 +35,6 @@ export default class LoadingListener extends Component {
     stopLoading = () => {
         this.setState({ loading: false });
     };
-
 
     /**
      * Render component

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Frame as PolarisFrame, Modal, TextContainer } from '@shopify/polaris';
 
 export default class ConfirmListener extends Component {
-
     state = {
         show: false,
         data: {},
-        callback: null
+        callback: null,
     };
 
     componentDidMount() {
@@ -22,10 +21,13 @@ export default class ConfirmListener extends Component {
     };
 
     close = (confirm = false) => {
-        this.setState({
-            show: false
-        },
-            typeof this.state.callback === "function" ? this.state.callback(confirm === true) : null
+        this.setState(
+            {
+                show: false,
+            },
+            typeof this.state.callback === 'function'
+                ? this.state.callback(confirm === true)
+                : null
         );
     };
 
@@ -38,14 +40,18 @@ export default class ConfirmListener extends Component {
         if (this.state.show) {
             content.push(
                 <PolarisFrame key="confirm">
-                    <div style={{height: this.state.data.height || '500px'}}>
+                    <div style={{ height: this.state.data.height || '500px' }}>
                         <Modal
                             instant
-                            open={true}
+                            open
                             onClose={this.close}
-                            title={this.state.data.title || 'Are you sure you want to perform this action?'}
+                            title={
+                                this.state.data.title ||
+                                'Are you sure you want to perform this action?'
+                            }
                             primaryAction={{
-                                content: this.state.data.confirmButton || 'Confirm',
+                                content:
+                                    this.state.data.confirmButton || 'Confirm',
                                 destructive: !!this.state.data.destructive,
                                 onAction: () => {
                                     this.close(true);
@@ -53,16 +59,15 @@ export default class ConfirmListener extends Component {
                             }}
                             secondaryActions={[
                                 {
-                                    content: this.state.data.closeButton || 'Cancel',
+                                    content:
+                                        this.state.data.closeButton || 'Cancel',
                                     onAction: this.close,
                                 },
                             ]}
                         >
                             <Modal.Section>
                                 <TextContainer>
-                                    <div>
-                                        {this.state.data.message}
-                                    </div>
+                                    <div>{this.state.data.message}</div>
                                 </TextContainer>
                             </Modal.Section>
                         </Modal>

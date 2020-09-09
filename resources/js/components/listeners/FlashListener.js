@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Frame as PolarisFrame, Toast } from '@shopify/polaris';
 
 export default class FlashListener extends Component {
-
     state = {
         show: false,
         content: null,
@@ -36,10 +35,9 @@ export default class FlashListener extends Component {
         if (this.state.show) {
             content.push(
                 <PolarisFrame key="flash">
-                    <Toast {...this.state}
-                        onDismiss={() =>
-                            this.setState({show: false })
-                        }
+                    <Toast
+                        {...this.state}
+                        onDismiss={() => this.setState({ show: false })}
                     />
                 </PolarisFrame>
             );

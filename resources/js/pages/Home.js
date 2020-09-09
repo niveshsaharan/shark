@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-export default function () {
-    return <div>Home</div>
+export default function() {
+    return <div>Home</div>;
 }

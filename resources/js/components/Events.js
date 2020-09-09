@@ -46,13 +46,15 @@ export default class Events {
      * Un-Queue Events
      */
     $off(event, callback) {
-        const {queue} = this;
+        const { queue } = this;
 
         if (typeof queue[event] !== 'undefined') {
             if (typeof callback === 'undefined') {
                 delete queue[event];
             } else {
-                this.queue[event] = queue[event].filter(sub => sub !== callback);
+                this.queue[event] = queue[event].filter(
+                    sub => sub !== callback
+                );
             }
         }
     }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { EmptyState } from '@shopify/polaris';
 
-
 class PageNotFound extends Component {
-
     constructor(props) {
         super(props);
 
@@ -53,10 +51,11 @@ class PageNotFound extends Component {
                     content: 'Go to home',
                     onAction: () => this.props.history.push('/'),
                 }}
-                image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg">
+                image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
+            >
                 <p>
-                    The page you're trying to reach is not available. You'll be redirected to
-                    home in {Math.ceil(this.state.timeout / 1000)}{' '}
+                    The page you're trying to reach is not available. You'll be
+                    redirected to home in {Math.ceil(this.state.timeout / 1000)}{' '}
                     {this.state.timeout / 1000 > 1 ? 'seconds' : 'second'}.
                 </p>
             </EmptyState>

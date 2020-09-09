@@ -1,19 +1,20 @@
 import React from 'react';
-import {Context} from '@shopify/app-bridge-react';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import {LoadingListener, FlashListener, ConfirmListener} from '.';
-import {Home, PageNotFound} from '../pages';
-import Events from "./Events";
+import { Context } from '@shopify/app-bridge-react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { LoadingListener, FlashListener, ConfirmListener } from '.';
+import { Home, PageNotFound } from '../pages';
+import Events from './Events';
 
 window.Events = new Events();
 
 export default function() {
-    return <>
+    return (
+        <>
             <Context.Consumer>
                 {app => {
                     // Do something with App Bridge `app` instance...
                     if (app) {
-                        //app.getState().then(state => console.log(state));
+                        // app.getState().then(state => console.log(state));
                     }
 
                     return (
@@ -23,7 +24,9 @@ export default function() {
                                     <Route
                                         path="/"
                                         exact
-                                        render={props => <Home {...props} title="Home" />}
+                                        render={props => (
+                                            <Home {...props} title="Home" />
+                                        )}
                                     />
                                     <Route component={PageNotFound} />
                                 </Switch>
@@ -36,4 +39,5 @@ export default function() {
                 }}
             </Context.Consumer>
         </>
+    );
 }
