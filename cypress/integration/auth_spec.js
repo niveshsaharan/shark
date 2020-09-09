@@ -1,14 +1,9 @@
-import {object_get, config} from "../../resources/js/functions";
-
 describe('Authentication', () => {
-
     before(() => cy.refreshDatabase());
 
-    describe('guest', function () {
-
+    describe('guest', function() {
         it('is redirected to login page', () => {
-            cy.visit('/')
-                .assertRedirect('/auth');
+            cy.visit('/').assertRedirect('/auth');
         });
 
         it('sees the login page with form and required fields', () => {
@@ -16,7 +11,11 @@ describe('Authentication', () => {
                 .get('form[action$="/auth"]')
                 .as('form')
                 .should('have.attr', 'method', 'POST')
-                .should('have.attr', 'action', Cypress.config('baseUrl') + '/auth');
+                .should(
+                    'have.attr',
+                    'action',
+                    `${Cypress.config('baseUrl')}/auth`
+                );
 
             cy.get('@form')
                 .get('[name="shop"]')
@@ -45,42 +44,44 @@ describe('Authentication', () => {
                 .as('input.shop');
 
             cy.get('@form')
-                .get('[type="submit"]')
+                .get('[type="submit"]:last')
                 .click();
 
             cy.get('[name="shop"]:invalid')
                 .should('have.length', 1)
-                .then(($input) => {
+                .then($input => {
                     expect($input.get(0).checkValidity()).to.equal(false);
-                })
+                });
         });
 
         it('Env variables are set', () => {
             cy.visit('/auth');
 
-            cy.window().then((win) => {
+            cy.window().then(win => {
                 const expectedKeys = [
-                    "env",
-                    "base_url",
-                    "csrfToken",
-                    "shopify.app_name",
-                    "shopify.api_key",
-                    "shopify.api_redirect",
-                    "shark.app_slug",
-                    "shark.app_description",
-                    "shark.shopify_affiliate_url",
-                    "shark.demo_url",
+                    'env',
+                    'base_url',
+                    'csrfToken',
+                    'shopify.app_name',
+                    'shopify.api_key',
+                    'shopify.api_redirect',
+                    'shark.app_slug',
+                    'shark.app_description',
+                    'shark.shopify_affiliate_url',
+                    'shark.demo_url',
                 ];
 
                 Object.values(expectedKeys).forEach(key => {
-                    const value = key.split('.').reduce((a, b) => a[b], win.Env);
-                    expect(value).to.not.undefined
+                    const value = key
+                        .split('.')
+                        .reduce((a, b) => a[b], win.Env);
+                    expect(value).to.not.undefined;
                 });
             });
         });
     });
 
-    describe('user', function () {
+    describe('user', function() {
         beforeEach(() => {
             cy.login();
         });
@@ -94,29 +95,31 @@ describe('Authentication', () => {
         it('Env variables are set', () => {
             cy.visit('/');
 
-            cy.window().then((win) => {
+            cy.window().then(win => {
                 const expectedKeys = [
-                    "env",
-                    "base_url",
-                    "csrfToken",
-                    "shopify.appbridge_enabled",
-                    "shopify.appbridge_version",
-                    "shopify.app_name",
-                    "shopify.api_key",
-                    "shopify.api_redirect",
-                    "shark.app_slug",
-                    "shark.app_description",
-                    "shark.shopify_affiliate_url",
-                    "shark.demo_url",
-                    "shop.shopify_domain",
-                    "force_redirect",
+                    'env',
+                    'base_url',
+                    'csrfToken',
+                    'shopify.appbridge_enabled',
+                    'shopify.appbridge_version',
+                    'shopify.app_name',
+                    'shopify.api_key',
+                    'shopify.api_redirect',
+                    'shark.app_slug',
+                    'shark.app_description',
+                    'shark.shopify_affiliate_url',
+                    'shark.demo_url',
+                    'shop.shopify_domain',
+                    'force_redirect',
                 ];
 
                 Object.values(expectedKeys).forEach(key => {
-                    const value = key.split('.').reduce((a, b) => a[b], win.Env);
-                    expect(value).to.not.undefined
+                    const value = key
+                        .split('.')
+                        .reduce((a, b) => a[b], win.Env);
+                    expect(value).to.not.undefined;
                 });
             });
         });
     });
-})
+});
