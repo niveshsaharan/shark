@@ -10,6 +10,8 @@
         "react/state-in-constructor": 0,
         "react/no-access-state-in-setstate": 0,
         "camelcase": 0,
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "import/no-extraneous-dependencies": 0,
+        "no-undef": 0
     }
 }
