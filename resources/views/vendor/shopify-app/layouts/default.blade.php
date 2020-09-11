@@ -21,7 +21,7 @@
                     'api_redirect',
                 ]),
                 'shop' => [
-                    'shopify_domain' => \Illuminate\Support\Facades\Auth::user()->name
+                    'shopify_domain' => auth()->user()->getDomain()->toNative()
                 ]
             ],JSON_PRETTY_PRINT) !!};
         </script>
@@ -44,7 +44,7 @@
                 var createApp = AppBridge.default;
                 var app = createApp({
                     apiKey: '{{ config('shopify-app.api_key') }}',
-                    shopOrigin: '{{ Auth::user()->name }}',
+                    shopOrigin: '{{ auth()->user()->getDomain()->toNative() }}',
                     forceRedirect: true,
                 });
             </script>
