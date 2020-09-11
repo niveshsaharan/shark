@@ -28,6 +28,8 @@ class UserTest extends TestCase
                 'email_verified_at',
                 'shopify_grandfathered',
                 'shopify_namespace',
+                'shopify_domain',
+                'shopify_token',
                 'shopify_freemium',
                 'plan_id',
                 'analytics_id',
@@ -237,13 +239,13 @@ class UserTest extends TestCase
     public function it_has_one_tester()
     {
         $shop = factory(User::class)->create([
-            'name' => 'shop-1.myshopify.com',
+            'shopify_domain' => 'shop-1.myshopify.com',
         ]);
 
         $this->assertEquals(0, $shop->tester()->count());
 
         $tester = factory(Tester::class)->create([
-            'shopify_domain' => $shop->name,
+            'shopify_domain' => $shop->shopify_domain,
         ]);
 
         $this->assertEquals(1, $shop->tester()->count());
@@ -280,11 +282,11 @@ class UserTest extends TestCase
     public function isTester_by_shopify_domain_in_config()
     {
         $shop1 = factory(User::class)->create([
-            'name' => 'my-shop1.myshopify.com',
+            'shopify_domain' => 'my-shop1.myshopify.com',
         ]);
 
         $shop2 = factory(User::class)->create([
-            'name' => 'my-test-shop.myshopify.com',
+            'shopify_domain' => 'my-test-shop.myshopify.com',
         ]);
 
         config()->set('shark.tester_shops', ['my-test-shop.myshopify.com']);
@@ -328,15 +330,15 @@ class UserTest extends TestCase
     public function isTester_by_record_in_testers_table()
     {
         $shop1 = factory(User::class)->create([
-            'name' => 'shop1.myshopify.com',
+            'shopify_domain' => 'shop1.myshopify.com',
         ]);
 
         $shop2 = factory(User::class)->create([
-            'name' => 'shop2.myshopify.com',
+            'shopify_domain' => 'shop2.myshopify.com',
         ]);
 
         $shop3 = factory(User::class)->create([
-            'name' => 'shop3.myshopify.com',
+            'shopify_domain' => 'shop3.myshopify.com',
         ]);
 
         $this->assertFalse($shop1->isTester());

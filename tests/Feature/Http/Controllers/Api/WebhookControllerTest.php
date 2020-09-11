@@ -40,11 +40,11 @@ class WebhookControllerTest extends TestCase
         Queue::fake();
 
         // Mock headers that match Shopify
-        $shop = factory(User::class)->create(['name' => 'apple.myshopify.com']);
+        $shop = factory(User::class)->create(['shopify_domain' => 'apple.myshopify.com']);
 
         $headers = [
             'HTTP_CONTENT_TYPE' => 'application/json',
-            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->name,
+            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->shopify_domain,
             'HTTP_X_SHOPIFY_HMAC_SHA256' => '+TsCekZg2nrlucyWVBp9C6v/zrvYm8DEVD72PIulnak=', // Matches fixture data and API secret
         ];
 
@@ -81,11 +81,11 @@ class WebhookControllerTest extends TestCase
         Queue::fake();
 
         // Mock headers that match Shopify
-        $shop = factory(User::class)->create(['name' => 'apple.myshopify.com']);
+        $shop = factory(User::class)->create(['shopify_domain' => 'apple.myshopify.com']);
 
         $headers = [
             'HTTP_CONTENT_TYPE' => 'application/json',
-            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->name,
+            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->shopify_domain,
             'HTTP_X_SHOPIFY_HMAC_SHA256' => '+TsCekZg2nrlucyWVBp9C6v/zrvYm8DEVD72PIulnak=', // Matches fixture data and API secret
         ];
 
@@ -117,11 +117,11 @@ class WebhookControllerTest extends TestCase
     public function it_throws_403_if_topic_is_not_supplied(): void
     {
         // Mock headers that match Shopify
-        $shop = factory(User::class)->create(['name' => 'apple.myshopify.com']);
+        $shop = factory(User::class)->create(['shopify_domain' => 'apple.myshopify.com']);
 
         $headers = [
             'HTTP_CONTENT_TYPE' => 'application/json',
-            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->name,
+            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->shopify_domain,
             'HTTP_X_SHOPIFY_HMAC_SHA256' => '+TsCekZg2nrlucyWVBp9C6v/zrvYm8DEVD72PIulnak=', // Matches fixture data and API secret
         ];
 
@@ -158,11 +158,11 @@ class WebhookControllerTest extends TestCase
     public function it_throws_404_if_webhook_job_does_not_exists(): void
     {
         // Mock headers that match Shopify
-        $shop = factory(User::class)->create(['name' => 'apple.myshopify.com']);
+        $shop = factory(User::class)->create(['shopify_domain' => 'apple.myshopify.com']);
 
         $headers = [
             'HTTP_CONTENT_TYPE' => 'application/json',
-            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->name,
+            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => $shop->shopify_domain,
             'HTTP_X_SHOPIFY_HMAC_SHA256' => '+TsCekZg2nrlucyWVBp9C6v/zrvYm8DEVD72PIulnak=', // Matches fixture data and API secret
         ];
 

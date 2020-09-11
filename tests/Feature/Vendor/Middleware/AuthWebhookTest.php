@@ -60,7 +60,7 @@ class AuthWebhookTest extends TestCase
         $secret = md5(rand(1, 100));
 
         factory(User::class)->create([
-            'name' => 'example.myshopify.com',
+            'shopify_domain' => 'example.myshopify.com',
             'api_type' => 'private',
             'api_key' => 'key',
             'api_secret' => $secret,
@@ -106,7 +106,7 @@ class AuthWebhookTest extends TestCase
         $secret = md5(rand(1, 100));
 
         factory(User::class)->create([
-            'name' => 'example.myshopify.com',
+            'shopify_domain' => 'example.myshopify.com',
             'api_type' => 'custom',
             'api_key' => 'key',
             'api_secret' => $secret,

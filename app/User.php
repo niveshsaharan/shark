@@ -109,7 +109,7 @@ class User extends Authenticatable implements IShopModel
      */
     public function tester()
     {
-        return $this->hasOne(Tester::class, 'shopify_domain', 'name');
+        return $this->hasOne(Tester::class, 'shopify_domain', 'shopify_domain');
     }
 
     /**
@@ -118,7 +118,7 @@ class User extends Authenticatable implements IShopModel
     public function isTester(): bool
     {
         return in_array($this->shopify_plan_display_name, config('shark.tester_plans'))
-            || in_array($this->name, config('shark.tester_shops'))
+            || in_array($this->getDomain()->toNative(), config('shark.tester_shops'))
             || ($this->shopify_partner && config('shark.shopify_partner_as_tester') === true)
             || $this->tester()->active()->count() > 0;
     }

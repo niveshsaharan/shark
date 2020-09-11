@@ -25,7 +25,7 @@ class ShopUpdateWebhookTest extends TestCase
     {
         // Create a shop
         $shop = factory(User::class)->create([
-            'name' => 'apple.myshopify.com',
+            'shopify_domain' => 'apple.myshopify.com',
         ]);
 
         $expected = [
@@ -60,7 +60,7 @@ class ShopUpdateWebhookTest extends TestCase
 
         // Run the job
         $response = ShopUpdateWebhook::dispatchNow(
-            ShopDomain::fromNative($shop->name),
+            ShopDomain::fromNative($shop->shopify_domain),
             json_decode(file_get_contents($this->fixturesPath.'/webhooks/shop__update.json'))
         );
 
