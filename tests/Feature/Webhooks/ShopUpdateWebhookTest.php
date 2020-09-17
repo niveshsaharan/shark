@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Webhooks;
 
-use App\User;
+use App\Models\User;
 use App\Webhooks\ShopUpdateWebhook;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Arr;
-use Osiset\ShopifyApp\Objects\Values\ShopDomain;
 use Tests\TestCase;
 
 class ShopUpdateWebhookTest extends TestCase
@@ -24,7 +23,7 @@ class ShopUpdateWebhookTest extends TestCase
     public function it_updates_shop_with_webhook_data()
     {
         // Create a shop
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'shopify_domain' => 'apple.myshopify.com',
         ]);
 
@@ -60,7 +59,7 @@ class ShopUpdateWebhookTest extends TestCase
 
         // Run the job
         $response = ShopUpdateWebhook::dispatchNow(
-            ShopDomain::fromNative($shop->shopify_domain),
+            $shop->getDomain(),
             json_decode(file_get_contents($this->fixturesPath.'/webhooks/shop__update.json'))
         );
 

@@ -19,7 +19,7 @@ class Admin extends Resource
      *
      * @var string
      */
-    public static $model = \App\Admin::class;
+    public static $model = \App\Models\Admin::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -79,11 +79,11 @@ class Admin extends Resource
                   ->displayUsingLabels()
                   ->options($request->user()->isSuperAdmin()
                       ? [
-                          \App\Admin::ADMIN_TYPE => 'Admin',
-                          \App\Admin::SUPER_ADMIN_TYPE => 'Super Admin',
+                          \App\Models\Admin::ADMIN_TYPE => 'Admin',
+                          \App\Models\Admin::SUPER_ADMIN_TYPE => 'Super Admin',
                       ]
                       : [
-                          \App\Admin::ADMIN_TYPE => 'Admin',
+                          \App\Models\Admin::ADMIN_TYPE => 'Admin',
                       ]),
 
             DateTime::make('Created', 'created_at')

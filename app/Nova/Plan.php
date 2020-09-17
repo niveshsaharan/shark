@@ -23,7 +23,7 @@ class Plan extends Resource
      *
      * @var string
      */
-    public static $model = \App\Plan::class;
+    public static $model = \App\Models\Plan::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

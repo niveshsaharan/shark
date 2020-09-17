@@ -19,7 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('type')->default(\App\Admin::ADMIN_TYPE);
+            $table->string('type')->default(\App\Models\Admin::ADMIN_TYPE);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

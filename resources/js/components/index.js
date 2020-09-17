@@ -1,4 +1,5 @@
 import App from './App';
+import Routes from './Routes';
 import { LoadingListener, FlashListener, ConfirmListener } from './listeners';
 
-export { App, LoadingListener, FlashListener, ConfirmListener };
+export { App, Routes, LoadingListener, FlashListener, ConfirmListener };

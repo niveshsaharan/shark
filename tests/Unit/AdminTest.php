@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Admin;
+use App\Models\Admin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +38,7 @@ class AdminTest extends TestCase
         $expected = [
             'id' => 'int',
             'email_verified_at' => 'datetime',
+            'deleted_at' => 'datetime',
         ];
 
         $actual = (new Admin())->getCasts();
@@ -51,7 +52,6 @@ class AdminTest extends TestCase
     public function it_has_expected_columns_casts_as_dates()
     {
         $expected = [
-            'deleted_at',
             'created_at',
             'updated_at',
         ];
@@ -92,9 +92,9 @@ class AdminTest extends TestCase
      */
     public function isSuperAdmin()
     {
-        $user = factory(Admin::class)->make();
-        $user2 = factory(Admin::class)->state('admin')->make();
-        $user3 = factory(Admin::class)->make([
+        $user = Admin::factory()->make();
+        $user2 = Admin::factory()->admin()->make();
+        $user3 = Admin::factory()->make([
             'type' => 'user',
         ]);
 
@@ -108,9 +108,9 @@ class AdminTest extends TestCase
      */
     public function isAdmin()
     {
-        $user = factory(Admin::class)->make();
-        $user2 = factory(Admin::class)->state('admin')->make();
-        $user3 = factory(Admin::class)->make([
+        $user = Admin::factory()->make();
+        $user2 = Admin::factory()->admin()->make();
+        $user3 = Admin::factory()->make([
             'type' => 'user',
         ]);
 
@@ -126,9 +126,9 @@ class AdminTest extends TestCase
      */
     public function canImpersonate()
     {
-        $user = factory(Admin::class)->make();
-        $user2 = factory(Admin::class)->state('admin')->make();
-        $user3 = factory(Admin::class)->make([
+        $user = Admin::factory()->make();
+        $user2 = Admin::factory()->admin()->make();
+        $user3 = Admin::factory()->make([
             'type' => 'user',
         ]);
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Http\Middleware;
 
-use App\Admin;
 use App\Http\Middleware\IsAdmin;
-use App\User;
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
@@ -21,7 +21,7 @@ class IsAdminTest extends TestCase
         $this->assertEquals(401, $response->status());
 
         // Test with user from other guard
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
         $this->actingAs($user);
 
         $response = ($this->app->make(IsAdmin::class))->handle(request(), function () {
@@ -30,7 +30,7 @@ class IsAdminTest extends TestCase
         $this->assertEquals(401, $response->status());
 
         // Test with user from correct guard but not admin
-        $user = factory(Admin::class)->make([
+        $user = Admin::factory()->make([
             'type' => 'invalid',
         ]);
 
@@ -48,7 +48,7 @@ class IsAdminTest extends TestCase
     public function it_works_for_admin_users()
     {
         $called = false;
-        $user = factory(Admin::class)->make();
+        $user = Admin::factory()->make();
         $this->actingAs($user, 'admin');
 
         $this->app->make(IsAdmin::class)->handle(request(), function () use (&$called) {

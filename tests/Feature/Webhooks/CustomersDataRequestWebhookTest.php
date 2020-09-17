@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Webhooks;
 
-use App\User;
+use App\Models\User;
 use App\Webhooks\CustomersDataRequestWebhook;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Osiset\ShopifyApp\Objects\Values\ShopDomain;
@@ -18,8 +18,8 @@ class CustomersDataRequestWebhookTest extends TestCase
     public function it_receives_data_and_returns_true()
     {
         // Create a shop
-        $shop = factory(User::class)->create([
-            'name' => 'apple.myshopify.com',
+        $shop = User::factory()->create([
+            'shopify_domain' => 'apple.myshopify.com',
         ]);
 
         // Run the job

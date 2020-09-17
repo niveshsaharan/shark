@@ -3,7 +3,7 @@
 namespace Tests\Unit\Http\Requests;
 
 use App\Http\Requests\UserSettingFormRequest;
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 class UserSettingFormRequestTest extends TestCase
@@ -33,7 +33,7 @@ class UserSettingFormRequestTest extends TestCase
      */
     public function authorize_returns_true_when_authenticated()
     {
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $this->actingAs($user);
 
