@@ -1,5 +1,6 @@
 import React from 'react';
 import { Context } from '@shopify/app-bridge-react';
+import { getSessionToken } from '@shopify/app-bridge-utils';
 import {config} from "../functions";
 import { Routes, LoadingListener, FlashListener, ConfirmListener } from '.';
 import Events from './Events';
