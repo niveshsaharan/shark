@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Tester;
-use App\User;
+use App\Models\Tester;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -78,6 +78,7 @@ class UserTest extends TestCase
             'shopify_scopes' => 'json',
             'shopify_partner' => 'boolean',
             'shopify_plus' => 'boolean',
+            'deleted_at' => 'datetime',
         ];
 
         $actual = (new User())->getCasts();
@@ -91,7 +92,6 @@ class UserTest extends TestCase
     public function it_has_expected_columns_casts_as_dates()
     {
         $expected = [
-            'deleted_at',
             'created_at',
             'updated_at',
         ];
@@ -130,7 +130,7 @@ class UserTest extends TestCase
      */
     public function updateFromGraphApiResponse()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'contact_email' => 'some-email@example.com',
         ]);
 
@@ -153,7 +153,7 @@ class UserTest extends TestCase
      */
     public function updateFromWebhook()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'contact_email' => 'some-email@example.com',
         ]);
 
@@ -176,7 +176,7 @@ class UserTest extends TestCase
      */
     public function isUsingPublicApp()
     {
-        $shop = factory(User::class)->make([
+        $shop = User::factory()->make([
             'api_type' => 'public',
         ]);
 
@@ -197,7 +197,7 @@ class UserTest extends TestCase
      */
     public function isUsingPrivateApp()
     {
-        $shop = factory(User::class)->make([
+        $shop = User::factory()->make([
             'api_type' => 'private',
             'api_key' => 'some-key',
             'api_secret' => 'some-secret',
@@ -218,7 +218,7 @@ class UserTest extends TestCase
      */
     public function isUsingCustomApp()
     {
-        $shop = factory(User::class)->make([
+        $shop = User::factory()->make([
             'api_type' => 'custom',
             'api_key' => 'some-key',
             'api_secret' => 'some-secret',
@@ -238,13 +238,13 @@ class UserTest extends TestCase
      */
     public function it_has_one_tester()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'shopify_domain' => 'shop-1.myshopify.com',
         ]);
 
         $this->assertEquals(0, $shop->tester()->count());
 
-        $tester = factory(Tester::class)->create([
+        $tester = Tester::factory()->create([
             'shopify_domain' => $shop->shopify_domain,
         ]);
 
@@ -257,11 +257,11 @@ class UserTest extends TestCase
      */
     public function isTester_by_plan_name()
     {
-        $shop1 = factory(User::class)->create([
+        $shop1 = User::factory()->create([
             'shopify_plan_display_name' => 'plan1',
         ]);
 
-        $shop2 = factory(User::class)->create([
+        $shop2 = User::factory()->create([
             'shopify_plan_display_name' => 'plan2',
         ]);
 
@@ -281,11 +281,11 @@ class UserTest extends TestCase
      */
     public function isTester_by_shopify_domain_in_config()
     {
-        $shop1 = factory(User::class)->create([
+        $shop1 = User::factory()->create([
             'shopify_domain' => 'my-shop1.myshopify.com',
         ]);
 
-        $shop2 = factory(User::class)->create([
+        $shop2 = User::factory()->create([
             'shopify_domain' => 'my-test-shop.myshopify.com',
         ]);
 
@@ -305,11 +305,11 @@ class UserTest extends TestCase
      */
     public function isTester_by_shopify_partner_as_test()
     {
-        $shop1 = factory(User::class)->create([
+        $shop1 = User::factory()->create([
             'shopify_partner' => true,
         ]);
 
-        $shop2 = factory(User::class)->create([
+        $shop2 = User::factory()->create([
             'shopify_partner' => false,
         ]);
 
@@ -329,15 +329,15 @@ class UserTest extends TestCase
      */
     public function isTester_by_record_in_testers_table()
     {
-        $shop1 = factory(User::class)->create([
+        $shop1 = User::factory()->create([
             'shopify_domain' => 'shop1.myshopify.com',
         ]);
 
-        $shop2 = factory(User::class)->create([
+        $shop2 = User::factory()->create([
             'shopify_domain' => 'shop2.myshopify.com',
         ]);
 
-        $shop3 = factory(User::class)->create([
+        $shop3 = User::factory()->create([
             'shopify_domain' => 'shop3.myshopify.com',
         ]);
 
@@ -346,16 +346,16 @@ class UserTest extends TestCase
         $this->assertFalse($shop3->isTester());
 
         // Create tester record
-        factory(Tester::class)->create([
+        Tester::factory()->create([
             'shopify_domain' => 'shop1.myshopify.com',
         ]);
 
-        factory(Tester::class)->create([
+        Tester::factory()->create([
             'shopify_domain' => 'shop2.myshopify.com',
             'expires_at' => Carbon::tomorrow(),
         ]);
 
-        factory(Tester::class)->create([
+        Tester::factory()->create([
             'shopify_domain' => 'shop3.myshopify.com',
             'expires_at' => Carbon::yesterday(),
         ]);
@@ -370,11 +370,11 @@ class UserTest extends TestCase
      */
     public function apiHelper()
     {
-        $publicShop = factory(User::class)->make();
+        $publicShop = User::factory()->make();
         $this->assertInstanceOf(IApiHelper::class, $publicShop->apiHelper());
 
         //
-        $privateAppShop = factory(User::class)->make([
+        $privateAppShop = User::factory()->make([
             'api_type' => 'private',
             'api_key' => 'api-key',
             'api_secret' => 'api-secret',
@@ -390,7 +390,7 @@ class UserTest extends TestCase
         $this->assertTrue($privateAppShopApiHelperOptions->isPrivate());
 
         //
-        $customAppShop = factory(User::class)->make([
+        $customAppShop = User::factory()->make([
             'api_type' => 'custom',
             'api_key' => 'api-key',
             'api_secret' => 'api-secret',

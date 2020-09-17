@@ -4,7 +4,7 @@ namespace Tests\Feature\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Requests\UserSettingFormRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
@@ -17,7 +17,7 @@ class SettingControllerTest extends TestCase
     public function index()
     {
         // Create a shop
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $settings = [
             'desktop_status' => false,
@@ -51,7 +51,7 @@ class SettingControllerTest extends TestCase
     public function save()
     {
         // Create a shop
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->actingAs($user)->put('/api/settings', [
             'desktop_status' => true,

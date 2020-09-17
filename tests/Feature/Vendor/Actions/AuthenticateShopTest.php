@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Vendor\Actions;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Osiset\ShopifyApp\Actions\AfterAuthorize;
 use Osiset\ShopifyApp\Actions\AuthenticateShop;
@@ -38,7 +38,7 @@ class AuthenticateShopTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_private_app()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'api_type' => 'private',
             'api_key' => 'key',
             'api_secret' => 'secret',
@@ -66,7 +66,7 @@ class AuthenticateShopTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_custom_app()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'api_type' => 'custom',
             'api_key' => 'key',
             'api_secret' => 'secret',

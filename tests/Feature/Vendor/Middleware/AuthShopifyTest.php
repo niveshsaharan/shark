@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Vendor\Middleware;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Osiset\ShopifyApp\Contracts\ApiHelper as IApiHelper;
 use Osiset\ShopifyApp\Contracts\Queries\Shop as IShopQuery;
@@ -34,7 +34,7 @@ class AuthShopifyTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_private_app()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'api_type' => 'private',
             'api_key' => 'key',
             'api_secret' => 'secret',
@@ -62,7 +62,7 @@ class AuthShopifyTest extends TestCase
      */
     public function uses_correct_api_helper_config_for_custom_app()
     {
-        $shop = factory(User::class)->create([
+        $shop = User::factory()->create([
             'api_type' => 'custom',
             'api_key' => 'key',
             'api_secret' => 'secret',

@@ -15,14 +15,14 @@ class FetchAndUpdateShopJob implements ShouldQueue
     /**
      * The shop domain.
      *
-     * @var \App\User
+     * @var \App\Models\User
      */
     protected $shop;
 
     /**
      * Create a new job instance.
      *
-     * @param \App\User $shop  The shop.
+     * @param \App\Models\User $shop  The shop.
      * @return void
      */
     public function __construct($shop)

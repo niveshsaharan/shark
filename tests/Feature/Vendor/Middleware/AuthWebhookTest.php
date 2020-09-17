@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Vendor\Middleware;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Request;
 use Osiset\ShopifyApp\Http\Middleware\AuthWebhook as AuthWebhookMiddleware;
@@ -59,7 +59,7 @@ class AuthWebhookTest extends TestCase
     {
         $secret = md5(rand(1, 100));
 
-        factory(User::class)->create([
+        User::factory()->create([
             'shopify_domain' => 'example.myshopify.com',
             'api_type' => 'private',
             'api_key' => 'key',
@@ -105,7 +105,7 @@ class AuthWebhookTest extends TestCase
     {
         $secret = md5(rand(1, 100));
 
-        factory(User::class)->create([
+        User::factory()->create([
             'shopify_domain' => 'example.myshopify.com',
             'api_type' => 'custom',
             'api_key' => 'key',

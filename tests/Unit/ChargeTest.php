@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Charge;
+use App\Models\Charge;
 use PHPUnit\Framework\TestCase;
 
 class ChargeTest extends TestCase

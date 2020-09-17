@@ -17,7 +17,7 @@ class Tester extends Resource
      *
      * @var string
      */
-    public static $model = \App\Tester::class;
+    public static $model = \App\Models\Tester::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -61,7 +61,7 @@ class Tester extends Resource
                         'placeholder' => 'Example: myshop.myshopify.com',
                     ],
                 ])
-                ->rules(['required', 'unique:\App\Tester,shopify_domain,'.$this->id, function ($attribute, $value, $fail) {
+                ->rules(['required', 'unique:\App\Models\Tester,shopify_domain,'.$this->id, function ($attribute, $value, $fail) {
                     if (! Str::endsWith($value, '.myshopify.com')) {
                         return $fail('The value must be a shopify domain.');
                     }

@@ -88,7 +88,7 @@ describe('Authentication', () => {
 
         it('can see home page', () => {
             cy.visit('/')
-                .contains('Home')
+                .contains("You're logged in")
                 .assertRedirect('/');
         });
 

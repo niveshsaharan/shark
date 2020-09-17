@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Observers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -16,13 +16,13 @@ class UserObserverTest extends TestCase
      */
     public function creating()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'somename.myshopify.com',
             'email' => '',
             'password' => null,
         ]);
 
-        $user2 = factory(User::class)->create([
+        $user2 = User::factory()->create([
             'name' => 'somename.myshopify.com',
             'email' => 'shop@someothervalue.com',
             'password' => Hash::make('password'),

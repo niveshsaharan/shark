@@ -3,7 +3,7 @@
 namespace Tests\Feature\Jobs;
 
 use App\Jobs\FetchAndUpdateShopJob;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Arr;
 use Tests\Stubs\Api as ApiStub;
@@ -24,7 +24,7 @@ class FetchAndUpdateShopTest extends TestCase
     public function it_fetches_result_from_graphql_api_and_saves_to_database()
     {
         // Create a shop
-        $shop = factory(User::class)->create();
+        $shop = User::factory()->create();
 
         // Setup API stub
         $this->setApiStub();

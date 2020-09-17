@@ -34,8 +34,8 @@ class CompileShopifyScriptTagsCommandTest extends TestCase
             ->assertExitCode(0);
 
         $this->assertFileExists(resource_path('shopify/app_compiled.js'));
-        $this->assertFileNotExists(resource_path('shopify/file.js'));
-        $this->assertFileNotExists(resource_path('shopify/test-file.js'));
+        $this->assertFileDoesNotExist(resource_path('shopify/file.js'));
+        $this->assertFileDoesNotExist(resource_path('shopify/test-file.js'));
 
         File::delete(resource_path('shopify/app_compiled.js'));
         File::delete(resource_path('views/script-tags/app_compiled.blade.php'));

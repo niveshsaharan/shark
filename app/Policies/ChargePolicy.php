@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Admin;
-use App\Charge;
+use App\Models\Admin;
+use App\Models\Charge;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ChargePolicy

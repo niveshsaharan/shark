@@ -28,7 +28,7 @@ class Shop extends Resource
      *
      * @var string
      */
-    public static $model = \App\User::class;
+    public static $model = \App\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -185,8 +185,8 @@ class Shop extends Resource
     public function cards(Request $request)
     {
         return [
-            (new \App\Nova\Metrics\ValueMetrics())->model(\App\User::class)->dateColumn('created_at')->setName('Shops'),
-            (new \App\Nova\Metrics\TrendMetrics())->model(\App\User::class)->column('created_at')->setName('Shops Per Day'),
+            (new \App\Nova\Metrics\ValueMetrics())->model(\App\Models\User::class)->dateColumn('created_at')->setName('Shops'),
+            (new \App\Nova\Metrics\TrendMetrics())->model(\App\Models\User::class)->column('created_at')->setName('Shops Per Day'),
         ];
     }
 

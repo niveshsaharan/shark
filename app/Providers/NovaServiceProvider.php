@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Admin;
-use App\User;
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Nova\Nova;
