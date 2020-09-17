@@ -20,7 +20,6 @@ class User extends Authenticatable implements IShopModel
         HasApiTokens,
         HasSettingsTable,
         HasFactory;
-
     use ShopModel {
         apiHelper as originalApiHelper;
     }
