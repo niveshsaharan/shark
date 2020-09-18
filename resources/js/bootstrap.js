@@ -9,13 +9,7 @@ import { App } from './components';
 const shopOrigin = config('shop.shopify_domain');
 const apiKey = config('shopify.api_key');
 
-const axios = require('axios');
-
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.withCredentials = true;
-window.axiosApiClient = axios.create();
-
-window.axios = axios;
+const app = document.getElementById('app')
 
 ReactDOM.render(
     <AppProvider i18n={enTranslations}>
@@ -26,8 +20,8 @@ ReactDOM.render(
                 forceRedirect: config('force_redirect'),
             }}
         >
-            <App />
+            <App app={app} />
         </Provider>
     </AppProvider>,
-    document.getElementById('app')
+    app
 );

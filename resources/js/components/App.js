@@ -1,18 +1,18 @@
 import React from 'react';
 import { Context } from '@shopify/app-bridge-react';
 import { getSessionToken } from '@shopify/app-bridge-utils';
+import { InertiaApp } from '@inertiajs/inertia-react'
 import {config} from "../functions";
-import { Routes, LoadingListener, FlashListener, ConfirmListener } from '.';
+import { LoadingListener, FlashListener, ConfirmListener } from '.';
 import Events from './Events';
 window.Events = new Events();
 
-export default function() {
+export default function(props) {
     return (
         <>
             <Context.Consumer>
                 {app => {
                     if (app) {
-
                         if (config('shopify.appbridge_enabled')) {
                             axiosApiClient.interceptors.request.use((config) => {
                                     return getSessionToken(app)
@@ -35,7 +35,10 @@ export default function() {
 
                         return (
                             <>
-                                <Routes app={app} />
+                                <InertiaApp
+                                    initialPage={JSON.parse(props.app.dataset.page)}
+                                    resolveComponent={name => import(`../pages/${name}`).then(module => module.default)}
+                                />
                                 <LoadingListener/>
                                 <FlashListener/>
                                 <ConfirmListener/>
