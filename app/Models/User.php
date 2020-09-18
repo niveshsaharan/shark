@@ -106,6 +106,22 @@ class User extends Authenticatable implements IShopModel
     }
 
     /**
+     * Check if shop is using embed version of app
+     * @return bool
+     */
+    public function isUsingEmbeddedApp()
+    {
+        return config('shopify-app.appbridge_enabled')
+            && $this->api()->getOptions()->isPrivate() === false
+            && request()->query('standalone') != 1
+            && ! (
+                request()->hasSession()
+                && request()->session()->get('standalone') == 1
+                && request()->session()->get('impersonate') == 1
+            );
+    }
+
+    /**
      * Shop can be a tester
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

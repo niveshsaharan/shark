@@ -1,7 +1,7 @@
 import React from 'react';
 import { Context } from '@shopify/app-bridge-react';
 import { getSessionToken } from '@shopify/app-bridge-utils';
-import { InertiaApp } from '@inertiajs/inertia-react'
+import { InertiaApp } from '@niveshsaharan/inertia-react'
 import {config} from "../functions";
 import { LoadingListener, FlashListener, ConfirmListener } from '.';
 import Events from './Events';
@@ -13,16 +13,7 @@ export default function(props) {
             <Context.Consumer>
                 {app => {
                     if (app) {
-                        if (config('shopify.appbridge_enabled')) {
-                            axiosApiClient.interceptors.request.use((config) => {
-                                    return getSessionToken(app)
-                                        .then((token) => {
-                                            config.headers['Authorization'] = `Bearer ${token}`;
-                                            return config;
-                                        });
-                                }
-                            );
-                        } else {
+                        if (! config('embedded')) {
                             // Should not load inside Shopify
                             if (window.top !== window.self) {
                                 const data = JSON.stringify({
@@ -30,6 +21,8 @@ export default function(props) {
                                     data: {location: window.location.href},
                                 });
                                 window.parent.postMessage(data, "https://" + config('shop.shopify_domain'));
+
+                                return null;
                             }
                         }
 
@@ -38,6 +31,12 @@ export default function(props) {
                                 <InertiaApp
                                     initialPage={JSON.parse(props.app.dataset.page)}
                                     resolveComponent={name => import(`../pages/${name}`).then(module => module.default)}
+                                    transformProps={ (props) => {
+                                        return {
+                                            ...props,
+                                            beforeSend: () => beforeSend(app),
+                                        }
+                                    }}
                                 />
                                 <LoadingListener/>
                                 <FlashListener/>
@@ -51,4 +50,28 @@ export default function(props) {
             </Context.Consumer>
         </>
     );
+}
+
+/**
+ * Before send
+ *
+ * @param app
+ * @returns {Promise<{headers: {}}>}
+ */
+const beforeSend = async function(app){
+    const response = {
+        headers: {}
+    };
+
+    if(config('embedded'))
+    {
+        const token = await getSessionToken(app);
+
+        if(token)
+        {
+            response.headers.Authorization = `Bearer ${token}`;
+        }
+    }
+
+    return response;
 }

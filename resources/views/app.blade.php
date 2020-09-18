@@ -29,6 +29,7 @@
                 'shop' => [
                     'shopify_domain' => auth()->user()->getDomain()->toNative(),
                 ],
+                'embedded' =>  auth()->user()->isUsingEmbeddedApp(),
                 'force_redirect' => config('shopify-app.appbridge_enabled'), // Can have multiple conditions in future like impersonating a shop
             ],JSON_PRETTY_PRINT) !!};
     </script>

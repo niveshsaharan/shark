@@ -6,7 +6,7 @@ import {
     TextStyle,
     SettingToggle,
 } from '@shopify/polaris';
-import { Inertia } from '@inertiajs/inertia';
+import { Inertia } from '@niveshsaharan/inertia';
 
 import { config, route } from '../functions';
 import InertiaLayout from '../components/InertiaLayout';
@@ -17,11 +17,13 @@ export default class SampleSettingPage extends React.Component {
     };
 
     save = () => {
-        Inertia.put(route('setting.update'), this.state.settings, {
-            replace: false,
-            preserveState: false,
-            preserveScroll: true,
-            headers: {},
+        this.props.beforeSend().then(({headers}) => {
+            Inertia.put(route('setting.update'), this.state.settings, {
+                replace: false,
+                preserveState: false,
+                preserveScroll: true,
+                headers,
+            });
         });
     };
 
@@ -41,12 +43,20 @@ export default class SampleSettingPage extends React.Component {
                         {
                             content: 'Home',
                             disabled: route().current('home'),
-                            onAction: () => Inertia.visit(route('home')),
+                            onAction: () =>  this.props.beforeSend().then(({headers}) => {
+                                Inertia.visit(route('home'), {
+                                    headers
+                                })
+                            }),
                         },
                         {
                             content: 'Settings',
                             disabled: route().current('setting.index'),
-                            onAction: () => Inertia.visit(route('setting.index')),
+                            onAction: () =>  this.props.beforeSend().then(({headers}) => {
+                                Inertia.visit(route('setting.index'), {
+                                    headers
+                                })
+                            }),
                         },
                     ]}
                     actionGroups={[]}

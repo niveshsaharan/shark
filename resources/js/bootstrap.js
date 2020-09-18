@@ -17,7 +17,7 @@ ReactDOM.render(
             config={{
                 apiKey,
                 shopOrigin,
-                forceRedirect: config('force_redirect'),
+                forceRedirect: config('embedded'),
             }}
         >
             <App app={app} />

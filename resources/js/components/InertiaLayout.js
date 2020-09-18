@@ -1,4 +1,4 @@
-import { usePage } from '@inertiajs/inertia-react'
+import { usePage } from '@niveshsaharan/inertia-react'
 import React, { useEffect } from 'react';
 
 export default function InertiaLayout({ title, children }) {
