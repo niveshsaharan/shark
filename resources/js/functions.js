@@ -1,4 +1,4 @@
-import {default as ziggyRoute} from 'ziggy';
+import {default as ziggyRoute} from './../../vendor/tightenco/ziggy/src/js/route.js';
 import { Ziggy } from './ziggy';
 
 export function object_get(object, key, $default = null) {

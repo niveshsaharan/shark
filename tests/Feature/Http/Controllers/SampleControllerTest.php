@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Tests\Feature\Http\Controllers;
 
 use App\Http\Controllers\SampleController;
 use App\Http\Requests\UserSettingFormRequest;
