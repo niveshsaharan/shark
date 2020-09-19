@@ -31,16 +31,16 @@ class RoutesTest extends TestCase
                 'home', ['web', 'auth.shopify'], true,
             ],
             [
-                'webhook', ['api', 'auth.webhook'], true,
+                'setting.index', ['web', 'auth.shopify'], true,
             ],
             [
-                'api.settings.get', ['api', 'auth:sanctum'], true,
-            ],
-            [
-                'api.settings.save', ['api', 'auth:sanctum'], true,
+                'setting.update', ['web', 'auth.shopify'], true,
             ],
             [
                 'horizon.index', ['web', 'admin'],
+            ],
+            [
+                'webhook', ['api', 'auth.webhook'], true,
             ],
         ];
     }
