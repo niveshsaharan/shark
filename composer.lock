@@ -321,16 +321,16 @@
         },
         {
             "name": "centire/laravel-shopify",
-            "version": "14.0.0",
+            "version": "14.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/niveshsaharan/laravel-shopify.git",
-                "reference": "5cf1593a58106a666be8f1524378643f1e77830d"
+                "reference": "7614e7c509674f38f758300951d0b80b33e3bf57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/5cf1593a58106a666be8f1524378643f1e77830d",
-                "reference": "5cf1593a58106a666be8f1524378643f1e77830d",
+                "url": "https://api.github.com/repos/niveshsaharan/laravel-shopify/zipball/7614e7c509674f38f758300951d0b80b33e3bf57",
+                "reference": "7614e7c509674f38f758300951d0b80b33e3bf57",
                 "shasum": ""
             },
             "require": {
@@ -386,7 +386,7 @@
                 "shopify",
                 "shopify-api"
             ],
-            "time": "2020-09-15T04:43:30+00:00"
+            "time": "2020-09-20T06:54:07+00:00"
         },
         {
             "name": "chrisharrison/php-array-of",
@@ -2548,16 +2548,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.9.1",
+            "version": "v4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28"
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88e519766fc58bd46b8265561fb79b54e2e00b28",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c13d05035deff45f1230ca68bd7d74d621762d9",
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9",
                 "shasum": ""
             },
             "require": {
@@ -2596,7 +2596,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-08-30T16:15:20+00:00"
+            "time": "2020-09-19T14:52:48+00:00"
         },
         {
             "name": "opis/closure",

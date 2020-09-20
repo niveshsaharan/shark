@@ -12,7 +12,7 @@ import { config, route } from '../functions';
 import InertiaLayout from '../components/InertiaLayout';
 
 export default function(props) {
-  //  props.token.then(res => console.log(res))
+    //  props.token.then(res => console.log(res))
     return (
         <InertiaLayout title="Home">
             <Page
@@ -21,20 +21,22 @@ export default function(props) {
                     {
                         content: 'Home',
                         disabled: route().current('home'),
-                        onAction: () =>  props.beforeSend().then(({headers}) => {
-                            Inertia.visit(route('home'), {
-                                headers
-                            })
-                        }),
+                        onAction: () =>
+                            props.beforeSend().then(({ headers }) => {
+                                Inertia.visit(route('home'), {
+                                    headers,
+                                });
+                            }),
                     },
                     {
                         content: 'Settings',
                         disabled: route().current('setting.index'),
-                        onAction: () => props.beforeSend().then(({headers}) => {
-                            Inertia.visit(route('setting.index'), {
-                                headers
-                            })
-                        }),
+                        onAction: () =>
+                            props.beforeSend().then(({ headers }) => {
+                                Inertia.visit(route('setting.index'), {
+                                    headers,
+                                });
+                            }),
                     },
                 ]}
                 actionGroups={[]}

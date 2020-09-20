@@ -17,7 +17,7 @@ export default class SampleSettingPage extends React.Component {
     };
 
     save = () => {
-        this.props.beforeSend().then(({headers}) => {
+        this.props.beforeSend().then(({ headers }) => {
             Inertia.put(route('setting.update'), this.state.settings, {
                 replace: false,
                 preserveState: false,
@@ -43,20 +43,22 @@ export default class SampleSettingPage extends React.Component {
                         {
                             content: 'Home',
                             disabled: route().current('home'),
-                            onAction: () =>  this.props.beforeSend().then(({headers}) => {
-                                Inertia.visit(route('home'), {
-                                    headers
-                                })
-                            }),
+                            onAction: () =>
+                                this.props.beforeSend().then(({ headers }) => {
+                                    Inertia.visit(route('home'), {
+                                        headers,
+                                    });
+                                }),
                         },
                         {
                             content: 'Settings',
                             disabled: route().current('setting.index'),
-                            onAction: () =>  this.props.beforeSend().then(({headers}) => {
-                                Inertia.visit(route('setting.index'), {
-                                    headers
-                                })
-                            }),
+                            onAction: () =>
+                                this.props.beforeSend().then(({ headers }) => {
+                                    Inertia.visit(route('setting.index'), {
+                                        headers,
+                                    });
+                                }),
                         },
                     ]}
                     actionGroups={[]}

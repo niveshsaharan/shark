@@ -9,7 +9,7 @@ import { App } from './components';
 const shopOrigin = config('shop.shopify_domain');
 const apiKey = config('shopify.api_key');
 
-const app = document.getElementById('app')
+const app = document.getElementById('app');
 
 ReactDOM.render(
     <AppProvider i18n={enTranslations}>

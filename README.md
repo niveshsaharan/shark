@@ -11,8 +11,18 @@ I am building this as starting point for all my future Shopify apps
 You can clone the repository:
 
 ```bash
-git clone nivehsharan/shark
+git clone https://github.com/niveshsaharan/shark.git
 ```
+
+Or [https://github.com/niveshsaharan/shark/generate](Use this template) to generate a project directly from this template.
+
+## Setup
+1. Clone/Use this template
+1. Run `composer install`
+1. Run `npm install`
+1. Run `npm run dev`
+1. Run `php artisan migrate`
+
 
 ## Admin
 Laravel Nova is used to build the admin panel so if you need to use it, you must have a valid licence for Laravel Nova. If you  don't have it, you can get it by visiting https://nova.laravel.com

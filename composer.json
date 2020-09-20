@@ -8,9 +8,9 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-json": "*",
-        "centire/laravel-model-settings": "dev-centire",
+        "glorand/laravel-model-settings": "^4.0",
         "centire/laravel-shopify": "^14.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
