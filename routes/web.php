@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'shopify-app::home.index')
-    ->middleware(['auth.shopify'])
-    ->name('home');
+Route::group(['middleware' => ['auth.shopify']], function () {
+    Route::get('/', 'SampleController@index')->name('home');
 
-Route::view('/{any}', 'shopify-app::home.index')
-    ->middleware(['auth.shopify'])
-    ->name('any')
-    ->where('any', '^(?!nova|admin|shark|___.*$).*');
+    Route::group(['as' => 'setting.', 'prefix' => '/settings'], function () {
+        Route::get('/', 'SampleController@indexSetting')->name('index');
+        Route::put('/', 'SampleController@updateSetting')->name('update');
+    });
+});

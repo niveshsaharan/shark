@@ -111,6 +111,7 @@ describe('Authentication', () => {
                     'shark.demo_url',
                     'shop.shopify_domain',
                     'force_redirect',
+                    'embedded',
                 ];
 
                 Object.values(expectedKeys).forEach(key => {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Models;
 
 use App\Models\Tester;
 use App\Models\User;
@@ -231,6 +231,37 @@ class UserTest extends TestCase
 
         $shop->api_type = 'public';
         $this->assertFalse($shop->isUsingCustomApp());
+    }
+
+    /**
+     * @test
+     */
+    public function isUsingEmbeddedApp_by_config()
+    {
+        $shop = User::factory()->create();
+
+        config()->set('shopify-app.appbridge_enabled', true);
+
+        $this->assertTrue($shop->isUsingEmbeddedApp());
+
+        config()->set('shopify-app.appbridge_enabled', false);
+
+        $this->assertFalse($shop->isUsingEmbeddedApp());
+    }
+
+    /**
+     * @test
+     */
+    public function isUsingEmbeddedApp_by_privateApp()
+    {
+        $shop = User::factory()->create([
+            'api_type' => 'private',
+            'api_key' => 'some-key',
+            'api_secret' => 'some-secret',
+            'api_password' => 'some-password',
+        ]);
+
+        $this->assertFalse($shop->isUsingEmbeddedApp());
     }
 
     /**

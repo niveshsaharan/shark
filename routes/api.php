@@ -13,16 +13,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::group(['prefix' => 'api'], function () {
-    Route::group(['middleware' => 'auth:sanctum', 'as' => 'api.'], function () {
-        Route::group(['as' => 'settings.', 'namespace' => 'Api'], function () {
-            Route::get('/settings', ['uses' => 'SettingController@index'])->name('get');
-            Route::put('/settings', ['uses' => 'SettingController@save'])->name('save');
-        });
-    });
-});
-
 Route::group(['middleware' => ['api']], function () {
     Route::post('/webhook', '\\'.WebhookController::class);
     Route::post('/webhook/{type}', '\\'.WebhookController::class)->name('webhook');

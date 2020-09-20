@@ -1,44 +1,53 @@
 import React from 'react';
 import { Context } from '@shopify/app-bridge-react';
 import { getSessionToken } from '@shopify/app-bridge-utils';
-import {config} from "../functions";
-import { Routes, LoadingListener, FlashListener, ConfirmListener } from '.';
+import { InertiaApp } from '@niveshsaharan/inertia-react';
+import { config } from '../functions';
+import { LoadingListener, FlashListener, ConfirmListener } from '.';
 import Events from './Events';
+
 window.Events = new Events();
 
-export default function() {
+export default function(props) {
     return (
         <>
             <Context.Consumer>
                 {app => {
                     if (app) {
-
-                        if (config('shopify.appbridge_enabled')) {
-                            axiosApiClient.interceptors.request.use((config) => {
-                                    return getSessionToken(app)
-                                        .then((token) => {
-                                            config.headers['Authorization'] = `Bearer ${token}`;
-                                            return config;
-                                        });
-                                }
-                            );
-                        } else {
+                        if (!config('embedded')) {
                             // Should not load inside Shopify
                             if (window.top !== window.self) {
                                 const data = JSON.stringify({
                                     message: 'Shopify.API.remoteRedirect',
-                                    data: {location: window.location.href},
+                                    data: { location: window.location.href },
                                 });
-                                window.parent.postMessage(data, "https://" + config('shop.shopify_domain'));
+                                window.parent.postMessage(
+                                    data,
+                                    `https://${config('shop.shopify_domain')}`
+                                );
+
+                                return null;
                             }
                         }
 
                         return (
                             <>
-                                <Routes app={app} />
-                                <LoadingListener/>
-                                <FlashListener/>
-                                <ConfirmListener/>
+                                <InertiaApp
+                                    initialPage={JSON.parse(
+                                        props.app.dataset.page
+                                    )}
+                                    resolveComponent={name =>
+                                        import(`../pages/${name}`).then(
+                                            module => module.default
+                                        )}
+                                    transformProps={props => ({
+                                        ...props,
+                                        beforeSend: () => beforeSend(app),
+                                    })}
+                                />
+                                <LoadingListener />
+                                <FlashListener />
+                                <ConfirmListener />
                             </>
                         );
                     }
@@ -49,3 +58,25 @@ export default function() {
         </>
     );
 }
+
+/**
+ * Before send
+ *
+ * @param app
+ * @returns {Promise<{headers: {}}>}
+ */
+const beforeSend = async function(app) {
+    const response = {
+        headers: {},
+    };
+
+    if (config('embedded')) {
+        const token = await getSessionToken(app);
+
+        if (token) {
+            response.headers.Authorization = `Bearer ${token}`;
+        }
+    }
+
+    return response;
+};
