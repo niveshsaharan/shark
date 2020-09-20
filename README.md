@@ -14,7 +14,7 @@ You can clone the repository:
 git clone https://github.com/niveshsaharan/shark.git
 ```
 
-Or [https://github.com/niveshsaharan/shark/generate](Use this template) to generate a project directly from this template.
+Or [Use this template](https://github.com/niveshsaharan/shark/generate) to generate a project directly from this template.
 
 ## Setup
 1. Clone/Use this template
