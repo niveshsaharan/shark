@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Tests\Feature\Http\Controllers;
 
-use App\Http\Controllers\Api\WebhookController;
+use App\Http\Controllers\WebhookController;
 use App\Models\User;
 use App\Webhooks\ShopUpdateWebhook;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +26,7 @@ class WebhookControllerTest extends TestCase
      */
     public function it_uses_correct_middlewares()
     {
-        $this->assertActionUsesMiddleware(WebhookController::class, '__invoke', ['api', 'auth.webhook']);
+        $this->assertActionUsesMiddleware(WebhookController::class, '__invoke', ['web', 'auth.webhook']);
     }
 
     /**

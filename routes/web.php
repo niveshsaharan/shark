@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth.shopify']], function () {
-    Route::get('/', 'SampleController@index')->name('home');
+    Route::get('/', [\App\Http\Controllers\SampleController::class, 'index'])->name('home');
 
     Route::group(['as' => 'setting.', 'prefix' => '/settings'], function () {
-        Route::get('/', 'SampleController@indexSetting')->name('index');
-        Route::put('/', 'SampleController@updateSetting')->name('update');
+        Route::get('/', [\App\Http\Controllers\SampleController::class, 'indexSetting'])->name('index');
+        Route::put('/', [\App\Http\Controllers\SampleController::class, 'updateSetting'])->name('update');
     });
 });
+
+// Webhooks routes to process Shopify webhooks
+Route::post('/webhook', \App\Http\Controllers\WebhookController::class);
+Route::post('/webhook/{type}', \App\Http\Controllers\WebhookController::class)->name('webhook');

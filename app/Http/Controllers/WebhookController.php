@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as ResponseResponse;
 use Illuminate\Support\Facades\Response;
@@ -15,8 +14,7 @@ class WebhookController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('api');
-        $this->middleware('auth.webhook');
+        $this->middleware(['web', 'auth.webhook']);
     }
 
     /**
