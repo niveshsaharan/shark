@@ -63,6 +63,7 @@ class Shop extends Resource
         'contact_email',
         'domain',
         'shop_name',
+        'shopify_domain',
         'city',
         'province',
         'country',
@@ -105,7 +106,10 @@ class Shop extends Resource
             Gravatar::make('Avatar', 'shop_email')
                     ->onlyOnIndex(),
 
-            Text::make('Name', 'shop_name')
+            Text::make('Name')
+                ->sortable(),
+
+            Text::make('Shop name', 'shop_name')
                 ->hideWhenCreating()
                 ->hideWhenUpdating()
                 ->sortable(),
@@ -117,7 +121,7 @@ class Shop extends Resource
             Text::make('Contact email')
                 ->onlyOnDetail(),
 
-            Text::make('Shopify domain', 'name')
+            Text::make('Shopify domain', 'shopify_domain')
                 ->hideWhenUpdating()
                 ->sortable()
                 ->withMeta([
