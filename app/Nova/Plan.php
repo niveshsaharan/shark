@@ -102,7 +102,8 @@ class Plan extends Resource
 
             NovaDependencyContainer::make([
                 Currency::make('Capped Amount')
-                    ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
+                    ->nullable()
+                    ->rules(['nullable', 'regex:/^\d+(\.\d{1,2})?$/'])
                     ->withMeta([
                         'extraAttributes' => [
                             'placeholder' => '10.00',
