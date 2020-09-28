@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -79,16 +80,10 @@ class Charge extends Resource
             Number::make('Charge ID')
                   ->onlyOnDetail(),
 
-            Number::make('Price')
-                  ->displayUsing(function ($price) {
-                      return $price ? '$'.$price : '-';
-                  })
+            Currency::make('Price')
                   ->sortable(),
 
-            Number::make('Capped Amount')
-                  ->displayUsing(function ($price) {
-                      return $price ? '$'.$price : '-';
-                  })
+            Currency::make('Capped Amount')
                   ->hideFromIndex(),
 
             Number::make('Trial', 'trial_days')

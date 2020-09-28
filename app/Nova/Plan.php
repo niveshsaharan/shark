@@ -6,6 +6,7 @@ use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -90,11 +91,8 @@ class Plan extends Resource
                     ->sortable(),
             ])->dependsOn('type', PlanType::RECURRING()->toNative()),
 
-            Number::make('Price')
+            Currency::make('Price')
                 ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
-                ->displayUsing(function ($price) {
-                    return $price ? '$'.$price : '-';
-                })
                 ->withMeta([
                     'extraAttributes' => [
                         'placeholder' => '5.00',
@@ -103,11 +101,8 @@ class Plan extends Resource
                 ->sortable(),
 
             NovaDependencyContainer::make([
-                Number::make('Capped Amount')
+                Currency::make('Capped Amount')
                     ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
-                    ->displayUsing(function ($price) {
-                        return $price ? '$'.$price : '-';
-                    })
                     ->withMeta([
                         'extraAttributes' => [
                             'placeholder' => '10.00',
