@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Console\Commands;
+namespace Tests\Feature\Console\Commands;
 
 use App\Console\Commands\CompileShopifyScriptTagsCommand;
 use Illuminate\Support\Facades\File;
