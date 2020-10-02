@@ -60,15 +60,13 @@ export default function(props) {
 }
 
 const refreshShopifyToken = function(app) {
-    getSessionToken(app)
-        .then(token => {
-            window.Env.shopify_token = token;
-        })
-        .finally(() => {
-            setTimeout(() => {
-                refreshShopifyToken(app);
-            }, 30000);
-        });
+    getSessionToken(app).then(token => {
+        window.Env.shopify_token = token;
+
+        setTimeout(() => {
+            refreshShopifyToken(app);
+        }, 55000);
+    });
 };
 
 Inertia.on('start', event => {
