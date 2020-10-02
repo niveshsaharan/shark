@@ -51,8 +51,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/dist/esm/index.js");
 /* harmony import */ var _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @niveshsaharan/inertia */ "./node_modules/@niveshsaharan/inertia/dist/index.js");
 /* harmony import */ var _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
-/* harmony import */ var _components_InertiaLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/InertiaLayout */ "./resources/js/components/InertiaLayout.js");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @shopify/app-bridge-react */ "./node_modules/@shopify/app-bridge-react/index.js");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
+/* harmony import */ var _components_InertiaLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/InertiaLayout */ "./resources/js/components/InertiaLayout.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -87,6 +89,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var SampleSettingPage = /*#__PURE__*/function (_React$Component) {
   _inherits(SampleSettingPage, _React$Component);
 
@@ -104,7 +107,7 @@ var SampleSettingPage = /*#__PURE__*/function (_React$Component) {
     return _possibleConstructorReturn(_this, (_temp = _this = _super.call.apply(_super, [this].concat(args)), _this.state = {
       settings: _this.props.settings
     }, _this.save = function () {
-      _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(Object(_functions__WEBPACK_IMPORTED_MODULE_3__["route"])('setting.update'), _this.state.settings, {
+      _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(Object(_functions__WEBPACK_IMPORTED_MODULE_4__["route"])('setting.update'), _this.state.settings, {
         replace: false,
         preserveState: false,
         preserveScroll: true
@@ -117,9 +120,9 @@ var SampleSettingPage = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_InertiaLayout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_InertiaLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
         title: "Settings"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_3__["TitleBar"], {
         title: "Settings",
         primaryAction: {
           content: 'Save',
@@ -128,21 +131,21 @@ var SampleSettingPage = /*#__PURE__*/function (_React$Component) {
         },
         secondaryActions: [{
           content: 'Home',
-          disabled: Object(_functions__WEBPACK_IMPORTED_MODULE_3__["route"])().current('home'),
+          disabled: Object(_functions__WEBPACK_IMPORTED_MODULE_4__["route"])().current('home'),
           onAction: function onAction() {
-            return _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].visit(Object(_functions__WEBPACK_IMPORTED_MODULE_3__["route"])('home'));
+            return _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].visit(Object(_functions__WEBPACK_IMPORTED_MODULE_4__["route"])('home'));
           }
         }, {
           content: 'Settings',
-          disabled: Object(_functions__WEBPACK_IMPORTED_MODULE_3__["route"])().current('setting.index'),
+          disabled: Object(_functions__WEBPACK_IMPORTED_MODULE_4__["route"])().current('setting.index'),
           onAction: function onAction() {
-            return _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].visit(Object(_functions__WEBPACK_IMPORTED_MODULE_3__["route"])('setting.index'));
+            return _niveshsaharan_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].visit(Object(_functions__WEBPACK_IMPORTED_MODULE_4__["route"])('setting.index'));
           }
         }],
         actionGroups: []
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Banner"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Banner"], {
         status: "info",
-        title: "You're logged in as ".concat(Object(_functions__WEBPACK_IMPORTED_MODULE_3__["config"])('shop.shopify_domain'))
+        title: "You're logged in as ".concat(Object(_functions__WEBPACK_IMPORTED_MODULE_4__["config"])('shop.shopify_domain'))
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].AnnotatedSection, {
         title: "Desktop settings",
         description: "Enable or disable the app for desktop users"

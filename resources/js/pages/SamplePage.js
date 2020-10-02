@@ -8,29 +8,31 @@ import {
     DisplayText,
 } from '@shopify/polaris';
 import { Inertia } from '@niveshsaharan/inertia';
+import { TitleBar } from '@shopify/app-bridge-react';
 import { config, route } from '../functions';
 import InertiaLayout from '../components/InertiaLayout';
 
 export default function(props) {
-    //  props.token.then(res => console.log(res))
     return (
         <InertiaLayout title="Home">
-            <Page
-                title="Home"
-                secondaryActions={[
-                    {
-                        content: 'Home',
-                        disabled: route().current('home'),
-                        onAction: () => Inertia.visit(route('home')),
-                    },
-                    {
-                        content: 'Settings',
-                        disabled: route().current('setting.index'),
-                        onAction: () => Inertia.visit(route('setting.index')),
-                    },
-                ]}
-                actionGroups={[]}
-            >
+            <Page>
+                <TitleBar
+                    title="Home"
+                    secondaryActions={[
+                        {
+                            content: 'Home',
+                            disabled: route().current('home'),
+                            onAction: () => Inertia.visit(route('home')),
+                        },
+                        {
+                            content: 'Settings',
+                            disabled: route().current('setting.index'),
+                            onAction: () =>
+                                Inertia.visit(route('setting.index')),
+                        },
+                    ]}
+                    actionGroups={[]}
+                />
                 <Layout>
                     <Layout.Section>
                         <Banner

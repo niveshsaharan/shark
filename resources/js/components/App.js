@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppBridge } from '@shopify/app-bridge-react';
+import { History } from '@shopify/app-bridge/actions';
 import { getSessionToken } from '@shopify/app-bridge-utils';
 import { Loading, Frame } from '@shopify/polaris';
 import { Inertia } from '@niveshsaharan/inertia';
@@ -12,10 +13,11 @@ window.Events = new Events();
 
 export default function(props) {
     const app = useAppBridge();
+    window.appHistory = History.create(app);
 
     useEffect(() => {
         config('embedded') && refreshShopifyToken(app);
-    });
+    }, [app]);
 
     // Should not load inside Shopify
     if (!config('embedded') && window.top !== window.self) {
@@ -95,6 +97,19 @@ Inertia.on('start', event => {
     // start loading if not disabled explicitly
     event.detail.visit.loading !== false &&
         window.Events.$emit('loading.start');
+
+    // Push to history
+    if (
+        config('embedded') &&
+        window.appHistory &&
+        (!event.detail.visit.method ||
+            event.detail.visit.method.toLowerCase() === 'get')
+    ) {
+        window.appHistory.dispatch(
+            History.Action.PUSH,
+            `/${event.detail.visit.url.urlBuilder.path}`
+        );
+    }
 });
 
 Inertia.on('finish', () => {
