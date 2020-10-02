@@ -17,13 +17,10 @@ export default class SampleSettingPage extends React.Component {
     };
 
     save = () => {
-        this.props.beforeSend().then(({ headers }) => {
-            Inertia.put(route('setting.update'), this.state.settings, {
-                replace: false,
-                preserveState: false,
-                preserveScroll: true,
-                headers,
-            });
+        Inertia.put(route('setting.update'), this.state.settings, {
+            replace: false,
+            preserveState: false,
+            preserveScroll: true,
         });
     };
 
@@ -43,22 +40,13 @@ export default class SampleSettingPage extends React.Component {
                         {
                             content: 'Home',
                             disabled: route().current('home'),
-                            onAction: () =>
-                                this.props.beforeSend().then(({ headers }) => {
-                                    Inertia.visit(route('home'), {
-                                        headers,
-                                    });
-                                }),
+                            onAction: () => Inertia.visit(route('home')),
                         },
                         {
                             content: 'Settings',
                             disabled: route().current('setting.index'),
                             onAction: () =>
-                                this.props.beforeSend().then(({ headers }) => {
-                                    Inertia.visit(route('setting.index'), {
-                                        headers,
-                                    });
-                                }),
+                                Inertia.visit(route('setting.index')),
                         },
                     ]}
                     actionGroups={[]}

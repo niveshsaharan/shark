@@ -33,3 +33,5 @@ mix.sass('resources/sass/app.scss', 'public/css')
     });
 
 mix.sass('resources/sass/polaris.scss', 'public/css')
+
+mix.version();

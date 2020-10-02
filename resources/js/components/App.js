@@ -1,6 +1,8 @@
-import React from 'react';
-import { Context } from '@shopify/app-bridge-react';
+import React, { useEffect } from 'react';
+import { useAppBridge } from '@shopify/app-bridge-react';
 import { getSessionToken } from '@shopify/app-bridge-utils';
+import { Loading, Frame } from '@shopify/polaris';
+import { Inertia } from '@niveshsaharan/inertia';
 import { InertiaApp } from '@niveshsaharan/inertia-react';
 import { config } from '../functions';
 import { LoadingListener, FlashListener, ConfirmListener } from '.';
@@ -9,74 +11,92 @@ import Events from './Events';
 window.Events = new Events();
 
 export default function(props) {
+    const app = useAppBridge();
+
+    useEffect(() => {
+        config('embedded') && refreshShopifyToken(app);
+    });
+
+    // Should not load inside Shopify
+    if (!config('embedded') && window.top !== window.self) {
+        const data = JSON.stringify({
+            message: 'Shopify.API.remoteRedirect',
+            data: { location: window.location.href },
+        });
+        window.parent.postMessage(
+            data,
+            `https://${config('shop.shopify_domain')}`
+        );
+
+        return (
+            <Frame>
+                <Loading />
+            </Frame>
+        );
+    }
+    if (config('embedded') && window.top === window.self) {
+        return (
+            <Frame>
+                <Loading />
+            </Frame>
+        );
+    }
+
     return (
         <>
-            <Context.Consumer>
-                {app => {
-                    if (app) {
-                        if (!config('embedded')) {
-                            // Should not load inside Shopify
-                            if (window.top !== window.self) {
-                                const data = JSON.stringify({
-                                    message: 'Shopify.API.remoteRedirect',
-                                    data: { location: window.location.href },
-                                });
-                                window.parent.postMessage(
-                                    data,
-                                    `https://${config('shop.shopify_domain')}`
-                                );
-
-                                return null;
-                            }
-                        }
-
-                        return (
-                            <>
-                                <InertiaApp
-                                    initialPage={JSON.parse(
-                                        props.app.dataset.page
-                                    )}
-                                    resolveComponent={name =>
-                                        import(`../pages/${name}`).then(
-                                            module => module.default
-                                        )}
-                                    transformProps={props => ({
-                                        ...props,
-                                        beforeSend: () => beforeSend(app),
-                                    })}
-                                />
-                                <LoadingListener />
-                                <FlashListener />
-                                <ConfirmListener />
-                            </>
-                        );
-                    }
-
-                    return null;
-                }}
-            </Context.Consumer>
+            <InertiaApp
+                initialPage={JSON.parse(props.app.dataset.page)}
+                resolveComponent={name =>
+                    import(`../pages/${name}`).then(module => module.default)
+                }
+            />
+            <LoadingListener />
+            <FlashListener />
+            <ConfirmListener />
         </>
     );
 }
 
-/**
- * Before send
- *
- * @param app
- * @returns {Promise<{headers: {}}>}
- */
-const beforeSend = async function(app) {
-    const response = {
-        headers: {},
-    };
+const refreshShopifyToken = function(app) {
+    getSessionToken(app)
+        .then(token => {
+            window.Env.shopify_token = token;
+        })
+        .finally(() => {
+            setTimeout(() => {
+                refreshShopifyToken(app);
+            }, 45000);
+        });
+};
 
-    if (config('embedded')) {
-        const token = await getSessionToken(app);
+Inertia.on('start', event => {
+    // Attach headers with embedded app requests
+    if (config('embedded') && config('shopify_token')) {
+        if (
+            !event.detail.visit.headers ||
+            !event.detail.visit.headers.Authorization
+        ) {
+            event.preventDefault();
 
-        if (token) {
-            response.headers.Authorization = `Bearer ${token}`;
+            const headers = {
+                Authorization: `Bearer ${config('shopify_token')}`,
+            };
+
+            event.detail.visit.headers = event.detail.visit.headers || {};
+            event.detail.visit.headers = {
+                ...event.detail.visit.headers,
+                ...headers,
+            };
+            Inertia.visit(event.detail.visit.url, event.detail.visit);
+            return false;
         }
     }
 
-    return response;
-};
+    // start loading if not disabled explicitly
+    event.detail.visit.loading !== false &&
+        window.Events.$emit('loading.start');
+});
+
+Inertia.on('finish', () => {
+    window.Events.$emit('loading.stop');
+});

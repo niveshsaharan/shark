@@ -10,9 +10,13 @@ export default function InertiaLayout({ title, children }) {
 
     useEffect(() => {
         if (flash.error || flash.success) {
-            window.Events.$emit('flash', flash.error || flash.success);
+            window.Events.$emit(
+                'flash',
+                flash.error || flash.success,
+                !!flash.error
+            );
         }
-    });
+    }, [flash]);
 
     return <>{children}</>;
 }

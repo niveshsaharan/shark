@@ -21,22 +21,12 @@ export default function(props) {
                     {
                         content: 'Home',
                         disabled: route().current('home'),
-                        onAction: () =>
-                            props.beforeSend().then(({ headers }) => {
-                                Inertia.visit(route('home'), {
-                                    headers,
-                                });
-                            }),
+                        onAction: () => Inertia.visit(route('home')),
                     },
                     {
                         content: 'Settings',
                         disabled: route().current('setting.index'),
-                        onAction: () =>
-                            props.beforeSend().then(({ headers }) => {
-                                Inertia.visit(route('setting.index'), {
-                                    headers,
-                                });
-                            }),
+                        onAction: () => Inertia.visit(route('setting.index')),
                     },
                 ]}
                 actionGroups={[]}
