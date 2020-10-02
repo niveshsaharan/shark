@@ -67,7 +67,7 @@ const refreshShopifyToken = function(app) {
         .finally(() => {
             setTimeout(() => {
                 refreshShopifyToken(app);
-            }, 45000);
+            }, 30000);
         });
 };
 
@@ -107,7 +107,7 @@ Inertia.on('start', event => {
     ) {
         window.appHistory.dispatch(
             History.Action.PUSH,
-            `/${event.detail.visit.url.urlBuilder.path}`
+            new URL(event.detail.visit.url.hydrateUrl()).pathname
         );
     }
 });
