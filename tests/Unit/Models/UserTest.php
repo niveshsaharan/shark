@@ -134,6 +134,10 @@ class UserTest extends TestCase
             'contact_email' => 'some-email@example.com',
         ]);
 
+        $shop2 = User::factory()->create([
+            'contact_email' => 'some-email2@example.com',
+        ]);
+
         $email = $this->faker->safeEmail;
 
         $apiResponse = new ResponseAccess([
@@ -143,9 +147,11 @@ class UserTest extends TestCase
         $response = $shop->updateFromGraphApiResponse($apiResponse);
 
         $shop->refresh();
+        $shop2->refresh();
 
-        $this->assertSame($response, 1);
+        $this->assertSame($response, true);
         $this->assertSame($email, $shop->contact_email);
+        $this->assertNotSame($email, $shop2->contact_email);
     }
 
     /**
@@ -157,6 +163,10 @@ class UserTest extends TestCase
             'contact_email' => 'some-email@example.com',
         ]);
 
+        $shop2 = User::factory()->create([
+            'contact_email' => 'some-email2@example.com',
+        ]);
+
         $email = $this->faker->safeEmail;
 
         $webhookResponse = (object) [
@@ -166,9 +176,11 @@ class UserTest extends TestCase
         $response = $shop->updateFromWebhook($webhookResponse);
 
         $shop->refresh();
+        $shop2->refresh();
 
-        $this->assertSame($response, 1);
+        $this->assertSame($response, true);
         $this->assertSame($email, $shop->contact_email);
+        $this->assertNotSame($email, $shop2->contact_email);
     }
 
     /**

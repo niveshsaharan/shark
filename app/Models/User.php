@@ -51,31 +51,29 @@ class User extends Authenticatable implements IShopModel
     /**
      * Update from api response
      *
-     * @param $query
      * @param \Osiset\BasicShopifyAPI\ResponseAccess $response
      *
      * @return bool
      */
-    public function scopeUpdateFromGraphApiResponse($query, ResponseAccess $response)
+    public function updateFromGraphApiResponse(ResponseAccess $response)
     {
         $response = app(ShopApiResponseFormatter::class)->format($response);
 
-        return $query->update($response);
+        return $this->update($response);
     }
 
     /**
      * Update from api response
      *
-     * @param $query
      * @param $data \stdClass
      *
      * @return bool
      */
-    public function scopeUpdateFromWebhook($query, \stdClass $data)
+    public function updateFromWebhook(\stdClass $data)
     {
         $response = app(ShopWebhookResponseFormatter::class)->format($data);
 
-        return $query->update($response);
+        return $this->update($response);
     }
 
     /**

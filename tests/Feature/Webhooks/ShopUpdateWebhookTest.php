@@ -63,7 +63,7 @@ class ShopUpdateWebhookTest extends TestCase
             json_decode(file_get_contents($this->fixturesPath.'/webhooks/shop__update.json'))
         );
 
-        $this->assertSame($response, 1);
+        $this->assertSame($response, true);
 
         // Refresh both models to see the changes
         $shop->refresh();
