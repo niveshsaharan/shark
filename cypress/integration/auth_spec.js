@@ -69,6 +69,7 @@ describe('Authentication', () => {
                     'shark.app_description',
                     'shark.shopify_affiliate_url',
                     'shark.demo_url',
+                    'shark.faq_url',
                 ];
 
                 Object.values(expectedKeys).forEach(key => {
@@ -109,9 +110,13 @@ describe('Authentication', () => {
                     'shark.app_description',
                     'shark.shopify_affiliate_url',
                     'shark.demo_url',
+                    'shark.faq_url',
+                    'shop.name',
                     'shop.shopify_domain',
-                    'force_redirect',
+                    'shop.domain',
                     'embedded',
+                    'standalone',
+                    'impersonated'
                 ];
 
                 Object.values(expectedKeys).forEach(key => {

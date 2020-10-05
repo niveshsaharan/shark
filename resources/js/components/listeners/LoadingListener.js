@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Frame as PolarisFrame, Loading } from '@shopify/polaris';
+import { Loading } from '@shopify/polaris';
 
 export default class LoadingListener extends Component {
     state = {
@@ -43,11 +43,7 @@ export default class LoadingListener extends Component {
         const content = [];
 
         if (this.state.loading) {
-            content.push(
-                <PolarisFrame key="loading">
-                    <Loading />
-                </PolarisFrame>
-            );
+            content.push(<Loading key="loading" />);
         }
 
         return content;

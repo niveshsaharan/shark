@@ -6,7 +6,6 @@ import { Loading, Frame } from '@shopify/polaris';
 import { Inertia } from '@niveshsaharan/inertia';
 import { InertiaApp } from '@niveshsaharan/inertia-react';
 import { config } from '../functions';
-import { LoadingListener, FlashListener, ConfirmListener } from '.';
 import Events from './Events';
 
 window.Events = new Events();
@@ -52,9 +51,6 @@ export default function(props) {
                     import(`../pages/${name}`).then(module => module.default)
                 }
             />
-            <LoadingListener />
-            <FlashListener />
-            <ConfirmListener />
         </>
     );
 }

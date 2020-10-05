@@ -23,3 +23,11 @@ cypress/videos/*
 
 # Do not ignore
 !.env.*.example
+
+# Public
+public/css
+public/js
+public/vendor
+
+# Resources
+resources/js/ziggy.js

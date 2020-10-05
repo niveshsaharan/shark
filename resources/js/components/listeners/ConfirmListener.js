@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Frame as PolarisFrame, Modal, TextContainer } from '@shopify/polaris';
+import { Modal, TextContainer } from '@shopify/polaris';
 
 export default class ConfirmListener extends Component {
     state = {
@@ -39,40 +39,40 @@ export default class ConfirmListener extends Component {
 
         if (this.state.show) {
             content.push(
-                <PolarisFrame key="confirm">
-                    <div style={{ height: this.state.data.height || '500px' }}>
-                        <Modal
-                            instant
-                            open
-                            onClose={this.close}
-                            title={
-                                this.state.data.title ||
-                                'Are you sure you want to perform this action?'
-                            }
-                            primaryAction={{
+                <div
+                    key="confirm"
+                    style={{ height: this.state.data.height || '500px' }}
+                >
+                    <Modal
+                        instant
+                        open
+                        onClose={this.close}
+                        title={
+                            this.state.data.title ||
+                            'Are you sure you want to perform this action?'
+                        }
+                        primaryAction={{
+                            content: this.state.data.confirmButton || 'Confirm',
+                            destructive: !!this.state.data.destructive,
+                            onAction: () => {
+                                this.close(true);
+                            },
+                        }}
+                        secondaryActions={[
+                            {
                                 content:
-                                    this.state.data.confirmButton || 'Confirm',
-                                destructive: !!this.state.data.destructive,
-                                onAction: () => {
-                                    this.close(true);
-                                },
-                            }}
-                            secondaryActions={[
-                                {
-                                    content:
-                                        this.state.data.closeButton || 'Cancel',
-                                    onAction: this.close,
-                                },
-                            ]}
-                        >
-                            <Modal.Section>
-                                <TextContainer>
-                                    <div>{this.state.data.message}</div>
-                                </TextContainer>
-                            </Modal.Section>
-                        </Modal>
-                    </div>
-                </PolarisFrame>
+                                    this.state.data.closeButton || 'Cancel',
+                                onAction: this.close,
+                            },
+                        ]}
+                    >
+                        <Modal.Section>
+                            <TextContainer>
+                                <div>{this.state.data.message}</div>
+                            </TextContainer>
+                        </Modal.Section>
+                    </Modal>
+                </div>
             );
         }
 

@@ -15,23 +15,23 @@ import InertiaLayout from '../components/InertiaLayout';
 export default function(props) {
     return (
         <InertiaLayout title="Home">
-            <Page>
+            <Page
+                secondaryActions={[
+                    {
+                        content: 'Home',
+                        disabled: route().current('home'),
+                        onAction: () => Inertia.visit(route('home')),
+                    },
+                    {
+                        content: 'Settings',
+                        disabled: route().current('setting.index'),
+                        onAction: () =>
+                            Inertia.visit(route('setting.index')),
+                    },
+                ]}
+                actionGroups={[]}>
                 <TitleBar
                     title="Home"
-                    secondaryActions={[
-                        {
-                            content: 'Home',
-                            disabled: route().current('home'),
-                            onAction: () => Inertia.visit(route('home')),
-                        },
-                        {
-                            content: 'Settings',
-                            disabled: route().current('setting.index'),
-                            onAction: () =>
-                                Inertia.visit(route('setting.index')),
-                        },
-                    ]}
-                    actionGroups={[]}
                 />
                 <Layout>
                     <Layout.Section>

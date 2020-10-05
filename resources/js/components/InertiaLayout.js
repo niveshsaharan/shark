@@ -1,5 +1,9 @@
 import { usePage } from '@niveshsaharan/inertia-react';
 import React, { useEffect } from 'react';
+import { Frame } from '@shopify/polaris';
+import FlashListener from "./listeners/FlashListener";
+import LoadingListener from "./listeners/LoadingListener";
+import ConfirmListener from "./listeners/ConfirmListener";
 
 export default function InertiaLayout({ title, children }) {
     const { flash } = usePage();
@@ -18,5 +22,10 @@ export default function InertiaLayout({ title, children }) {
         }
     }, [flash]);
 
-    return <>{children}</>;
+    return <Frame>
+        {children}
+        <FlashListener />
+        <LoadingListener />
+        <ConfirmListener />
+    </Frame>;
 }

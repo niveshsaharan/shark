@@ -112,11 +112,8 @@ class User extends Authenticatable implements IShopModel
         return config('shopify-app.appbridge_enabled')
             && $this->api()->getOptions()->isPrivate() === false
             && request()->query('standalone') != 1
-            && ! (
-                request()->hasSession()
-                && request()->session()->get('standalone') == 1
-                && request()->session()->get('impersonate') == 1
-            );
+            && ! (request()->hasSession() && request()->session()->get('standalone'))
+            && ! app('impersonate')->isImpersonating();
     }
 
     /**

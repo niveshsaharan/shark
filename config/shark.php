@@ -75,4 +75,13 @@ return [
     | It is helpful when you want to allow shopify partners to test and use the app free of charge
     */
     'shopify_partner_as_tester' => env('SHOPIFY_PARTNER_AS_TESTER_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | FAQs
+    |--------------------------------------------------------------------------
+    |
+    | Set a full URL to FAQs of your app
+    */
+    'faq_url' => env('SHOPIFY_FAQ_URL'),
 ];

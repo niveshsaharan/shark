@@ -4,7 +4,7 @@ import { AppProvider } from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import { config } from './functions';
-import { App } from './components';
+import App from './components/App';
 
 const shopOrigin = config('shop.shopify_domain');
 const apiKey = config('shopify.api_key');

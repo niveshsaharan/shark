@@ -21,7 +21,8 @@
                     'shopify_affiliate_url',
                     'app_slug',
                     'app_description',
-                    'demo_url'
+                    'demo_url',
+                    'faq_url',
                 ]),
 
             ],JSON_PRETTY_PRINT) !!};

@@ -24,13 +24,17 @@
                     'shopify_affiliate_url',
                     'app_slug',
                     'app_description',
-                    'demo_url'
+                    'demo_url',
+                    'faq_url',
                 ]),
                 'shop' => [
+                    'name' => auth()->user()->shop_name,
                     'shopify_domain' => auth()->user()->getDomain()->toNative(),
+                    'domain' => auth()->user()->domain ?: auth()->user()->getDomain()->toNative(),
                 ],
                 'embedded' =>  auth()->user()->isUsingEmbeddedApp(),
-                'force_redirect' => config('shopify-app.appbridge_enabled'), // Can have multiple conditions in future like impersonating a shop
+                'standalone' =>  ! auth()->user()->isUsingEmbeddedApp(),
+                'impersonated' => app('impersonate')->isImpersonating(),
             ],JSON_PRETTY_PRINT) !!};
     </script>
 </head>
