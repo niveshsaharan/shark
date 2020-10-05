@@ -28,6 +28,7 @@ cypress/videos/*
 public/css
 public/js
 public/vendor
+public/mix-manifest.json
 
 # Resources
 resources/js/ziggy.js
