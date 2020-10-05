@@ -25,14 +25,12 @@ export default function(props) {
                     {
                         content: 'Settings',
                         disabled: route().current('setting.index'),
-                        onAction: () =>
-                            Inertia.visit(route('setting.index')),
+                        onAction: () => Inertia.visit(route('setting.index')),
                     },
                 ]}
-                actionGroups={[]}>
-                <TitleBar
-                    title="Home"
-                />
+                actionGroups={[]}
+            >
+                <TitleBar title="Home" />
                 <Layout>
                     <Layout.Section>
                         <Banner

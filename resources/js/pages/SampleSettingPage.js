@@ -28,30 +28,30 @@ export default class SampleSettingPage extends React.Component {
     render() {
         return (
             <InertiaLayout title="Settings">
-                <Page primaryAction={{
-                    content: 'Save',
-                    disabled:
-                        JSON.stringify(this.props.settings) ===
-                        JSON.stringify(this.state.settings),
-                    onAction: this.save,
-                }}
-                      secondaryActions={[
-                          {
-                              content: 'Home',
-                              disabled: route().current('home'),
-                              onAction: () => Inertia.visit(route('home')),
-                          },
-                          {
-                              content: 'Settings',
-                              disabled: route().current('setting.index'),
-                              onAction: () =>
-                                  Inertia.visit(route('setting.index')),
-                          },
-                      ]}
-                      actionGroups={[]}>
-                    <TitleBar
-                        title="Settings"
-                    />
+                <Page
+                    primaryAction={{
+                        content: 'Save',
+                        disabled:
+                            JSON.stringify(this.props.settings) ===
+                            JSON.stringify(this.state.settings),
+                        onAction: this.save,
+                    }}
+                    secondaryActions={[
+                        {
+                            content: 'Home',
+                            disabled: route().current('home'),
+                            onAction: () => Inertia.visit(route('home')),
+                        },
+                        {
+                            content: 'Settings',
+                            disabled: route().current('setting.index'),
+                            onAction: () =>
+                                Inertia.visit(route('setting.index')),
+                        },
+                    ]}
+                    actionGroups={[]}
+                >
+                    <TitleBar title="Settings" />
                     <Layout>
                         <Layout.Section>
                             <Banner
