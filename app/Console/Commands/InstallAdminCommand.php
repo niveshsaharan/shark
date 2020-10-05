@@ -69,6 +69,10 @@ class InstallAdminCommand extends Command
             ];
         }
 
+        if (! in_array('@php artisan nova:publish', $composerContent['scripts']['post-install-cmd'])) {
+            $composerContent['scripts']['post-install-cmd'][] = '@php artisan nova:publish --ansi';
+        }
+
         if (! in_array('@php artisan nova:publish', $composerContent['scripts']['post-update-cmd'])) {
             $composerContent['scripts']['post-update-cmd'][] = '@php artisan nova:publish --ansi';
         }
