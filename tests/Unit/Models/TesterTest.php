@@ -74,21 +74,4 @@ class TesterTest extends TestCase
     {
         $this->assertInstanceOf('\Illuminate\Database\Eloquent\Builder', (new Tester())->active());
     }
-
-    /**
-     * @test
-     */
-    public function yo()
-    {
-        $this->assertTrue(
-            Schema::hasColumns((new Tester())->getTable(), [
-                'id',
-                'shopify_domain',
-                'expires_at',
-                'created_at',
-                'updated_at',
-                'deleted_at',
-            ])
-        );
-    }
 }
