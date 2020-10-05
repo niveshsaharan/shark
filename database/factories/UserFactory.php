@@ -57,4 +57,18 @@ class UserFactory extends Factory
             'shopify_scopes' => [],
         ];
     }
+
+    /**
+     * Grandfathered shop
+     *
+     * @return \Database\Factories\UserFactory
+     */
+    public function grandfathered()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'shopify_grandfathered' => true,
+            ];
+        });
+    }
 }
