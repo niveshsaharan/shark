@@ -60,7 +60,8 @@ class ShopLoginEventSubscriber implements ShouldQueue
      *
      * @return bool
      */
-    private function afterLoggedIn($shop){
+    private function afterLoggedIn($shop)
+    {
         if (! $shop || ! $shop instanceof ShopModel) {
             return false;
         }
