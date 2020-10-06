@@ -84,6 +84,7 @@ class Charge extends Resource
                   ->sortable(),
 
             Currency::make('Capped Amount')
+                  ->nullable()
                   ->hideFromIndex(),
 
             Number::make('Trial', 'trial_days')
@@ -95,7 +96,10 @@ class Charge extends Resource
 
             Text::make('Status'),
 
-            Boolean::make('Test', 'test'),
+            Boolean::make('Live', 'test')
+                ->displayUsing(function ($value) {
+                    return ! $value;
+                }),
 
             DateTime::make('Billing On')
                     ->format('MMM, DD YYYY')
