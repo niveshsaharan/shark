@@ -35,7 +35,7 @@ class EventServiceProviderTest extends TestCase
     {
         return [
             [
-                'App\Listeners\ShopImpersonateEventSubscriber',
+                'App\Listeners\ShopLoginEventSubscriber',
             ],
         ];
     }
