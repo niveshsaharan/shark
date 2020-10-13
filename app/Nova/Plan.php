@@ -93,6 +93,8 @@ class Plan extends Resource
 
             Currency::make('Price')
                 ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
+                ->min(0.5)
+                ->step(0.01)
                 ->withMeta([
                     'extraAttributes' => [
                         'placeholder' => '5.00',
@@ -104,6 +106,8 @@ class Plan extends Resource
                 Currency::make('Capped Amount')
                     ->nullable()
                     ->rules(['nullable', 'regex:/^\d+(\.\d{1,2})?$/'])
+                    ->min(0.5)
+                    ->step(0.01)
                     ->withMeta([
                         'extraAttributes' => [
                             'placeholder' => '10.00',
