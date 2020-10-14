@@ -91,21 +91,35 @@ class Plan extends Resource
                     ->sortable(),
             ])->dependsOn('type', PlanType::RECURRING()->toNative()),
 
-            Currency::make('Price')
-                ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
-                ->min(0.5)
-                ->step(0.01)
-                ->withMeta([
-                    'extraAttributes' => [
-                        'placeholder' => '5.00',
-                    ],
-                ])
-                ->sortable(),
+            NovaDependencyContainer::make([
+                Currency::make('Price')
+                    ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
+                    ->min(0.5)
+                    ->step(0.01)
+                    ->withMeta([
+                        'extraAttributes' => [
+                            'placeholder' => '5.00',
+                        ],
+                    ])
+                    ->sortable(),
+            ])->dependsOn('type', PlanType::ONETIME()->toNative()),
+
+            NovaDependencyContainer::make([
+                Currency::make('Price')
+                    ->rules(['regex:/^\d+(\.\d{1,2})?$/'])
+                    ->step(0.01)
+                    ->withMeta([
+                        'extraAttributes' => [
+                            'placeholder' => '5.00',
+                        ],
+                    ])
+                    ->sortable(),
+            ])->dependsOn('type', PlanType::RECURRING()->toNative()),
 
             NovaDependencyContainer::make([
                 Currency::make('Capped Amount')
                     ->nullable()
-                    ->rules(['nullable', 'regex:/^\d+(\.\d{1,2})?$/'])
+                    ->rules(['nullable', 'required_if:price,0', 'regex:/^\d+(\.\d{1,2})?$/'])
                     ->min(0.5)
                     ->step(0.01)
                     ->withMeta([
@@ -117,6 +131,7 @@ class Plan extends Resource
                     ->sortable(),
 
                 Text::make('Terms')
+                    ->rules(['nullable', 'required_if:price,0'])
                     ->help('The terms to display for the usage charge/capped_amount (Fill only for recurring type plans and if you plan to issue usage charges)')
                     ->hideFromIndex(),
             ])->dependsOn('type', PlanType::RECURRING()->toNative()),
