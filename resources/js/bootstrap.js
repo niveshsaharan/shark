@@ -12,7 +12,11 @@ const apiKey = config('shopify.api_key');
 const app = document.getElementById('app');
 
 ReactDOM.render(
-    <AppProvider i18n={enTranslations}>
+    <AppProvider i18n={enTranslations}
+                 features={{newDesignLanguage: true}}
+                 theme={{
+                     colorScheme: config('color_scheme') === 'dark' ? 'dark' : 'light',
+                 }}>
         <Provider
             config={{
                 apiKey,
