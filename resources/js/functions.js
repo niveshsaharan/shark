@@ -1,4 +1,4 @@
-import { Inertia } from '@niveshsaharan/inertia';
+import { Inertia } from '@inertiajs/inertia';
 import { default as ziggyRoute } from '../../vendor/tightenco/ziggy/src/js/route.js';
 import { Ziggy } from './ziggy';
 

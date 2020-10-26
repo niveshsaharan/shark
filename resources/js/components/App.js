@@ -3,8 +3,8 @@ import { useAppBridge } from '@shopify/app-bridge-react';
 import { History } from '@shopify/app-bridge/actions';
 import { getSessionToken } from '@shopify/app-bridge-utils';
 import { Loading, Frame } from '@shopify/polaris';
-import { Inertia } from '@niveshsaharan/inertia';
-import { InertiaApp } from '@niveshsaharan/inertia-react';
+import { Inertia } from '@inertiajs/inertia';
+import { App as InertiaApp } from '@inertiajs/inertia-react';
 import { config } from '../functions';
 import Events from './Events';
 
@@ -83,7 +83,7 @@ Inertia.on('start', event => {
                 ...event.detail.visit.headers,
                 ...headers,
             };
-            Inertia.visit(event.detail.visit.url, event.detail.visit);
+            Inertia.visit(event.detail.visit.url.pathname + event.detail.visit.url.search, event.detail.visit);
             return false;
         }
     }
@@ -101,7 +101,7 @@ Inertia.on('start', event => {
     ) {
         window.appHistory.dispatch(
             History.Action.PUSH,
-            new URL(event.detail.visit.url.hydrateUrl()).pathname
+            event.detail.visit.url.pathname + event.detail.visit.url.search
         );
     }
 });

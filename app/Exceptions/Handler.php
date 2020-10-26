@@ -55,6 +55,14 @@ class Handler extends ExceptionHandler
             throw new \App\Exceptions\MissingShopDomainException();
         }
 
-        return parent::render($request, $exception);
+        $response = parent::render($request, $exception);
+
+        if ($response->status() === 419) {
+            return back()->with([
+                'message' => 'The page expired, please try again.',
+            ]);
+        }
+
+        return $response;
     }
 }
