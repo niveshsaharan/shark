@@ -7,7 +7,7 @@ import {
     SkeletonBodyText,
     DisplayText,
 } from '@shopify/polaris';
-import { Inertia } from '@niveshsaharan/inertia';
+import { Inertia } from '@inertiajs/inertia';
 import { TitleBar } from '@shopify/app-bridge-react';
 import { config, route } from '../functions';
 import InertiaLayout from '../components/InertiaLayout';
