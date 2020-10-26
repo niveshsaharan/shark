@@ -35,6 +35,7 @@
                 'embedded' =>  auth()->user()->isUsingEmbeddedApp(),
                 'standalone' =>  ! auth()->user()->isUsingEmbeddedApp(),
                 'impersonated' => app('impersonate')->isImpersonating(),
+                'color_scheme' => 'light'
             ],JSON_PRETTY_PRINT) !!};
     </script>
 </head>
