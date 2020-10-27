@@ -78,6 +78,7 @@ class UserTest extends TestCase
             'shopify_scopes' => 'json',
             'shopify_partner' => 'boolean',
             'shopify_plus' => 'boolean',
+            'metadata' => 'json',
             'deleted_at' => 'datetime',
         ];
 

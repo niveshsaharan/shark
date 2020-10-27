@@ -46,6 +46,7 @@ class User extends Authenticatable implements IShopModel
         'shopify_scopes' => 'json',
         'shopify_partner' => 'boolean',
         'shopify_plus' => 'boolean',
+        'metadata' => 'json',
     ];
 
     /**
