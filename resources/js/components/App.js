@@ -15,7 +15,10 @@ export default function(props) {
     window.appHistory = History.create(app);
 
     useEffect(() => {
-        config('embedded') && refreshShopifyToken(app);
+        if (config('embedded')) {
+            refreshShopifyToken(app);
+            handleAppErrors(app);
+        }
     }, [app]);
 
     // Should not load inside Shopify
@@ -65,6 +68,13 @@ const refreshShopifyToken = function(app) {
     });
 };
 
+const handleAppErrors = function(app) {
+    app.error(data => {
+        const { type, message } = data;
+        window.Events.$emit('flash', `${type}: ${message}`, true);
+    });
+};
+
 Inertia.on('start', event => {
     // Attach headers with embedded app requests
     if (config('embedded') && config('shopify_token')) {
@@ -83,7 +93,10 @@ Inertia.on('start', event => {
                 ...event.detail.visit.headers,
                 ...headers,
             };
-            Inertia.visit(event.detail.visit.url.pathname + event.detail.visit.url.search, event.detail.visit);
+            Inertia.visit(
+                event.detail.visit.url.pathname + event.detail.visit.url.search,
+                event.detail.visit
+            );
             return false;
         }
     }
