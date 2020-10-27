@@ -71,7 +71,7 @@ const refreshShopifyToken = function(app) {
 const handleAppErrors = function(app) {
     app.error(data => {
         const { type, message } = data;
-        window.Events.$emit('flash', `${type}: ${message}`, true);
+        //window.Events.$emit('flash', `${type}: ${message}`, true);
     });
 };
 
