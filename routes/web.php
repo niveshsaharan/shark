@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth.shopify']], function () {
     });
 });
 
+// Redirect to app store
+Route::redirect('/appstore', 'https://apps.shopify.com/'.config('shark.app_slug'))->name('appstore');
+
 // Webhooks routes to process Shopify webhooks
 Route::post('/webhook', \App\Http\Controllers\WebhookController::class);
 Route::post('/webhook/{type}', \App\Http\Controllers\WebhookController::class)->name('webhook');

@@ -40,6 +40,9 @@ class RoutesTest extends TestCase
                 'horizon.index', ['web', 'admin'],
             ],
             [
+                'appstore', ['web'], true,
+            ],
+            [
                 'webhook', ['web', 'auth.webhook'], true,
             ],
         ];
