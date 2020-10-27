@@ -28,6 +28,11 @@ class ShopLoginEventSubscriber implements ShouldQueue
             'shop.login',
             'App\Listeners\ShopLoginEventSubscriber@handleShopLogin',
         );
+
+        $events->listen(
+            'shop.installed',
+            'App\Listeners\ShopLoginEventSubscriber@handleShopInstalled',
+        );
     }
 
     /**
@@ -75,6 +80,24 @@ class ShopLoginEventSubscriber implements ShouldQueue
         call_user_func($dispatchScriptsAction, $shopId, false);
         call_user_func($dispatchWebhooksAction, $shopId, false);
         call_user_func($afterAuthorizeAction, $shopId, false);
+
+        return true;
+    }
+
+    /**
+     * Handle Shop Installed
+     *
+     * @param $shop
+     * @param $session array|null
+     *
+     * @return bool
+     */
+    public function handleShopInstalled($shop, $session = null)
+    {
+        if (! $shop->referrer && ($referrer = $session['referrer'] ?? null) && $referrer != $shop->referrer) {
+            $shop->referrer = $referrer;
+            $shop->save();
+        }
 
         return true;
     }
