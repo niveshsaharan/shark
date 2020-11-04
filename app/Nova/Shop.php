@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Lenses\PaidShop;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
@@ -153,6 +154,9 @@ class Shop extends Resource
             Boolean::make('Freemium', 'shopify_freemium')
                 ->onlyOnDetail(),
 
+            Text::make('Referrer')
+                ->onlyOnDetail(),
+
             new Panel('Shopify', $this->shopifyFields()),
 
             new Panel('Address', $this->addressFields()),
@@ -189,8 +193,12 @@ class Shop extends Resource
     public function cards(Request $request)
     {
         return [
-            (new \App\Nova\Metrics\ValueMetrics())->model(\App\Models\User::class)->dateColumn('created_at')->setName('Shops'),
-            (new \App\Nova\Metrics\TrendMetrics())->model(\App\Models\User::class)->column('created_at')->setName('Shops Per Day'),
+            (new \App\Nova\Metrics\TrendMetrics())->model(\App\Models\User::class)->column('created_at')->setName('Shops Per Day')->width('1/3'),
+            (new \App\Nova\Metrics\ValueMetrics())->model(\App\Models\User::class)->dateColumn('created_at')->setName('Shops Per Range')->width('1/3'),
+            (new \App\Nova\Metrics\Value\PaidShop())->setName('Paid Shops')->width('1/3'),
+            (new \App\Nova\Metrics\PartitionMetrics())->model($this->model())->column('country')->setName('Shops By Country')->width('1/3'),
+            (new \App\Nova\Metrics\PartitionMetrics())->model($this->model())->column('shopify_plan_display_name')->setName('Shops By Shopify Plans')->width('1/3'),
+            (new \App\Nova\Metrics\PartitionMetrics())->model($this->model())->column('referrer')->setName('Shops By Referrer')->width('1/3'),
         ];
     }
 
@@ -213,7 +221,9 @@ class Shop extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+            (new PaidShop())->setName('Paid Shops'),
+        ];
     }
 
     /**

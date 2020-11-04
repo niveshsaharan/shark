@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\PartitionMetrics;
+use App\Nova\Metrics\TrendMetrics;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -12,6 +14,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Osiset\ShopifyApp\Objects\Enums\ChargeStatus;
 
 class Charge extends Resource
 {
@@ -153,7 +156,8 @@ class Charge extends Resource
     public function cards(Request $request)
     {
         return [
-
+            (new TrendMetrics())->model($this->model()->where('test', false))->column('activated_on')->setName('Activated Per Day'),
+            (new PartitionMetrics())->model($this->model()->where('test', false)->where('status', ChargeStatus::ACTIVE()->toNative()))->column('name')->setName('Charges by Plan'),
         ];
     }
 

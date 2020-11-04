@@ -74,8 +74,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         $cards = [
-            (new \App\Nova\Metrics\ValueMetrics())->model(User::class)->dateColumn('created_at')->setName('Shops'),
             (new \App\Nova\Metrics\TrendMetrics())->model(User::class)->column('created_at')->setName('Shops Per Day'),
+            (new \App\Nova\Metrics\ValueMetrics())->model(User::class)->dateColumn('created_at')->setName('Shops Per Range'),
+            (new \App\Nova\Metrics\Value\PaidShop())->setName('Paid Shops'),
         ];
 
         if (config('queue.default') == 'redis') {
