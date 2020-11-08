@@ -84,4 +84,23 @@ return [
     | Set a full URL to FAQs of your app
     */
     'faq_url' => env('SHOPIFY_FAQ_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Tag Manager
+    |--------------------------------------------------------------------------
+    |
+    | Set the ID for Google Tag manager. Example: GTM-1ABC1DE
+    */
+    'google_tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Analytics
+    |--------------------------------------------------------------------------
+    |
+    | Set the Google Analytics id if you are not using Google Tag manger
+    | Example: G-ABC1234567
+    */
+    'google_analytics_id' => env('GOOGLE_ANALYTICS_ID'),
 ];

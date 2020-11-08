@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('shopify-app.app_name') }}</title>
     <link href="{{asset('/css/polaris.css')}}" type="text/css" rel="stylesheet" />
+    <x-marketing.gtm />
+    <x-marketing.ga />
     <script>
         window.Env = {!! json_encode([
                 'env'                     => config('app.env'),
