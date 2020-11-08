@@ -1,4 +1,4 @@
-@if(app()->environment('production') && config('shark.google_analytics_id'))
+@if(app()->environment('production') && config('shark.google_analytics_id') && ! app('impersonate')->isImpersonating())
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('shark.google_analytics_id') }}"></script>
 <script>
