@@ -155,7 +155,7 @@ class Shop extends Resource
                 ->onlyOnDetail(),
 
             Text::make('Referrer')
-                ->onlyOnDetail(),
+                ->hideFromIndex(),
 
             new Panel('Shopify', $this->shopifyFields()),
 
