@@ -23,19 +23,26 @@ export function route(name, params, absolute) {
 }
 
 export function redirectTop(props, url, options = {}) {
-    if (window.top !== window.self && config('shopify_token')) {
-        url = new URL(url);
-        url.searchParams.append('token', config('shopify_token'));
+    if (window.top !== window.self) {
+        if(config('shopify_token'))
+        {
+            url = new URL(url);
+            url.searchParams.append('token', config('shopify_token'));
 
-        const data = JSON.stringify({
-            message: 'Shopify.API.remoteRedirect',
-            data: { location: url.href },
-        });
+            const data = JSON.stringify({
+                message: 'Shopify.API.remoteRedirect',
+                data: { location: url.href },
+            });
 
-        window.parent.postMessage(
-            data,
-            `https://${config('shop.shopify_domain')}`
-        );
+            window.parent.postMessage(
+                data,
+                `https://${config('shop.shopify_domain')}`
+            );
+        }
+        else{
+            alert("Shopify token was not found.")
+            window.open(url);
+        }
     } else {
         Inertia.visit(url, options);
     }
