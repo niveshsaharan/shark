@@ -75,7 +75,7 @@ const handleAppErrors = function(app) {
     });
 };
 
-Inertia.on('start', event => {
+Inertia.on('before', event => {
     // Attach headers with embedded app requests
     if (config('embedded') && config('shopify_token')) {
         if (
