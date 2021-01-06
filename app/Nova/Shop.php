@@ -165,7 +165,7 @@ class Shop extends Resource
 
             new Panel('Shopify API', $this->shopifyApiFields()),
 
-            BelongsTo::make('Billing Plan', 'plan', Plan::class),
+            BelongsTo::make('Billing Plan', 'plan', Plan::class)->nullable(),
 
             DateTime::make('Created', 'created_at')
                 ->format('MMM, DD YYYY')
