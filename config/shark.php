@@ -103,4 +103,26 @@ return [
     | Example: G-ABC1234567
     */
     'google_analytics_id' => env('GOOGLE_ANALYTICS_ID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Shopify Partner Name
+    |--------------------------------------------------------------------------
+    |
+    | This option simply lets you set the business name
+    |
+    */
+
+    'shopify_partner_name' => env('SHOPIFY_PARTNER_NAME', env('SHOPIFY_APP_NAME')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Shopify Support Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This option simply lets you set the Support Email Address
+    |
+    */
+
+    'support_email' => env('SHOPIFY_SUPPORT_EMAIL'),
 ];
