@@ -55,9 +55,4 @@ class WebhookController extends Controller
 
         return Response::make('', 201);
     }
-
-    public function status()
-    {
-        return true;
-    }
 }
