@@ -25,7 +25,7 @@ Or [Use this template](https://github.com/niveshsaharan/shark/generate) to gener
 
 
 ## Admin
-Laravel Nova is used to build the admin panel so if you need to use it, you must have a valid licence for Laravel Nova. If you  don't have it, you can get it by visiting https://nova.laravel.com
+Laravel Nova is used to build the admin panel so if you need to use it, you must have a valid licence for Laravel Nova. If you  don't have a licence, you can get it by visiting https://nova.laravel.com
 
 Once you have the licence, you can run following command to install it:
 
