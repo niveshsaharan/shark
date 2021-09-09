@@ -31,4 +31,16 @@ class SampleController extends Controller
             ],
         ]);
     }
+
+    public function updateSettingNew(UserSettingFormRequest $request)
+    {
+        $settings = $request->user()->settings()->setMultiple($request->validated())->all();
+
+        return Inertia::render('SampleSettingPage', [
+            'settings' => $settings,
+            'flash' => [
+                'success' => 'Settings updated successfully.',
+            ],
+        ]);
+    }
 }
