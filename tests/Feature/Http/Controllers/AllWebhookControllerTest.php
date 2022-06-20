@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
-class WebhookControllerTest extends TestCase
+class AllWebhookControllerTest extends TestCase
 {
     use RefreshDatabase;
 
