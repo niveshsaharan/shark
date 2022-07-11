@@ -230,4 +230,42 @@ class AllWebhookControllerTest extends TestCase
 
         $response->assertStatus(401);
     }
+
+    /**
+     * @test
+     */
+    public function it_throws_401_if_headers_are_not_valid_1(): void
+    {
+        // Create a webhook call and pass in our own headers and data
+        $response = $this->call(
+            'post',
+            '/webhook/shop-update',
+            [],
+            [],
+            [],
+            [],
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
+        );
+
+        $response->assertStatus(401);
+
+        $headers = [
+            'HTTP_CONTENT_TYPE' => 'application/json',
+            'HTTP_X_SHOPIFY_SHOP_DOMAIN' => 'my-shop.myshopify.com',
+            'HTTP_X_SHOPIFY_HMAC_SHA256' => 'yGbDMKfotIqKG8CebV020BTJWtY/H/7w9Lemf66Mj7k=', // Matches fixture data and API secret
+        ];
+
+        // Create a webhook call and pass in our own headers and data
+        $response = $this->call(
+            'post',
+            '/webhook/shop-update',
+            [],
+            [],
+            [],
+            $headers,
+            file_get_contents($this->fixturesPath.'/webhooks/shop__update.json')
+        );
+
+        $response->assertStatus(401);
+    }
 }
