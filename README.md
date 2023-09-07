@@ -64,3 +64,5 @@ If you discover any security related issues, please email hey@nive.sh instead of
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+# GIT_AUTHOR_DATE="$(date -v-20d)" GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE" git commit -m 'Add all response formatter'
