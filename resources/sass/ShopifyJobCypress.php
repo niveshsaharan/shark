@@ -1,0 +1,1 @@
+some-test-code<?php /**PATH /Volumes/code/shark/resources/views/script-tags/some-other-file_compiled.blade.php ENDPATH**/ ?>
