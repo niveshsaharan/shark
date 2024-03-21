@@ -1,0 +1,2 @@
+console.log("This script was compiled at `<?php echo e($now->toISOString()); ?>` from the app `<?php echo e(config('shopify-app.app_name')); ?>`");
+<?php /**PATH /Volumes/code/shark/resources/views/script-tags/app_compiled.blade.php ENDPATH**/ ?>
